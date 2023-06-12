@@ -16,9 +16,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	implementation 'javax.servlet:jstl'
-	testImplementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'javax.servlet:jstl'	
 	
 }
 

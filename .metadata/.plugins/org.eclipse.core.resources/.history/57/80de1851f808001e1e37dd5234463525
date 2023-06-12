@@ -1,0 +1,9 @@
+package com.ezen.g02;
+
+// Model2 MVC에서 프로젝트의 요청을 담당하는 서블릿과 기능별 구동을 담당하는 액션팩토리 역할을 하는 클래스임.
+// 현재 클래스가 그 역할을 하는 클래스라는걸 알려주기 위해 아래와 같은 어노테이션을 사용하여 표시함.
+
+@Controller
+public class SpringBootController {
+
+}
