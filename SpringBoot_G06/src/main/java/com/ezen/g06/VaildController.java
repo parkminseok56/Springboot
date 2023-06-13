@@ -24,6 +24,13 @@ public class VaildController {
 		// 클래스의 이름은 ContentValidator , java 의 Validator 인터페이스를 implements 한 클래스임.
 		ContentValidator valid = new ContentValidator();
 		valid.validate(contentdto, result);
+		
+		// BindingResult result : 에러 제목 (키값)과 내용(밸류값)을 담을 수 있는 객체
+		// validator 의 멤버 메서드인 validate가 contenetdto 내용을 검사한 후 result에 오류 내용을 담아주고,
+		// 리턴되지 않아도 call by reference 이기때문에 오류 내용을 현재 위치에서도 result 라는 이름으로
+		// 사용이 가능함
+		
+		
 
 		if (result.hasErrors()) {
 			model.addAttribute("message", "writer와 content는 비어있으면 안됨.");
