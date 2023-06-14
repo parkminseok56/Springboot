@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-@Data
+@Data 
 public class ContentDto {
    
 	@Size(min=4, max=20,message="Writer min 4, max 20")

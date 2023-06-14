@@ -20,8 +20,8 @@ public class ModelController {
 
 	@RequestMapping("/test1") // 요청 주소가 http://localhost:8070/test1 일 때 실행되는 메서드
 	public String test1(HttpServletRequest request, Model model) {
-		// RequestMapping 메서드의 매개변수로 HttpServletRequest를 지정하면, Spring을 전달해준
-		// request 사용이 가능함.
+		// RequestMapping 메서드의 매개변수로 HttpServletRequest를 지정하면, 	  
+		//  Spring을 전달해준 request 사용이 가능함.
 		request.setAttribute("name1", "홍길동");
 
 		// 리턴되는 jsp 파일까지만 해당 내용을 전달 할 수 있는 1회용 자료 전달 도구
