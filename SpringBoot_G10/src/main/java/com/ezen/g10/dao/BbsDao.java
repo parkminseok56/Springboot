@@ -55,28 +55,44 @@ public class BbsDao implements IBbsDao {
 	@Override
 	public int update(BbsDto bdto) {
 		String sql = "update bbs set writer=?, title=?, content=? where id=?";
-		int result = template.update(sql,bdto.getWriter(),bdto.getTitle(),bdto.getContent(),bdto.getId());
+		int result = template.update(sql, bdto.getWriter(), bdto.getTitle(), bdto.getContent(), bdto.getId());
 		return result;
 	}
 
 	@Override
-    public int delete(int id) {
-            String sql = "delete from bbs where id=?";
-            int result = template.update(sql , id);        
-            return result;
-    }
-	
-	
+	public int delete(int id) {
+		String sql = "delete from bbs where id=?";
+		int result = template.update(sql, id);
+		return result;
+	}
+
 	@Override
 	public BbsDto view(int id) {
 		String sql = "select * from bbs where id =?";
-		BbsDto bdto = template.queryForObject(
+		/*
+		 * BbsDto bdto = template.queryForObject( sql, new
+		 * BeanPropertyRowMapper<BbsDto>( BbsDto.class), id );
+		 */
+		List<BbsDto> list = template.query(
 				sql,
-				new BeanPropertyRowMapper<BbsDto>( BbsDto.class),
-				id
+				new RowMapper<BbsDto>() {
+			    @Override
+		    	public BbsDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				BbsDto bdto = new BbsDto();
+				bdto.setId(rs.getInt("id"));
+				bdto.setWriter(rs.getString("writer"));
+				bdto.setContent(rs.getString("content"));
+				bdto.setTitle(rs.getString("title"));
+				return bdto; // 리턴된 bdto는 list에 차곡차곡 쌓임.
+		      }	
+			},
+			id
 		);
-
-		return bdto;
+		if( list.size() == 0) 
+			return null;
+		else 
+			return list.get(0);
+		//return bdto;
 	}
 
 }
