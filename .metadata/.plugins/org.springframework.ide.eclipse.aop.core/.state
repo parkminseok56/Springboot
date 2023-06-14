@@ -9,4 +9,5 @@
 <aop-project name="SpringBoot_G01"/>
 <aop-project name="SpringBoot_G03"/>
 <aop-project name="SpringBoot_G02"/>
+<aop-project name="SpringBoot_G10"/>
 </aop-reference-model>
