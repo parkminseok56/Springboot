@@ -2,10 +2,15 @@ package com.ezen.g10.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.g10.dao.BbsDao;
+import com.ezen.g10.dto.BbsDto;
 
 @Controller
 public class BbsController {
@@ -23,5 +28,53 @@ public class BbsController {
 		
 		mav.setViewName("bbslist");
 		return mav;
+	}
+	
+	
+	@RequestMapping("/writeForm")
+	public String writeForm () {		
+		return "writeForm";
+	}
+	
+	
+	@RequestMapping(value="/write",method=RequestMethod.POST)
+	// @PostMapping("/write") 둘 중 하나만 쓰자;
+	public String write( BbsDto bbsdto) {
+		 bdao.write(bbsdto);	
+		 return "redirect:/";
+	}
+	
+	
+	@RequestMapping("/view")
+	public ModelAndView view(@RequestParam("id") int id, Model model) {
+		ModelAndView mav = new ModelAndView();
+		
+		// BbsDto bdto = bdao.view(id);
+		// model.addAttribute(bdto)
+		mav.addObject("dto",bdao.view(id));
+		
+		mav.setViewName("view");
+		return mav;
+	}
+			
+	@RequestMapping("/updateForm")
+	public ModelAndView updateForm(@RequestParam("id") int id, Model model) {
+		ModelAndView mav = new ModelAndView();		
+		mav.addObject("dto",bdao.view(id));
+		mav.setViewName("updateForm");
+		return mav;
+	}
+	
+	@PostMapping("/update")
+	public String update( BbsDto bbsdto) {
+		
+		bdao.update(bbsdto);
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("id") int id) {	
+		bdao.delete(id);
+		return "redirect:/";
 	}
 }

@@ -18,12 +18,16 @@
 			<td>삭제</td>
 		</tr>
 		<c:forEach items="${list }" var="dto">
-		    <tr align="center"> <td>${dto.id }</td><td>${dto.writer }</td>
-		          <td><a href="view?id=${dto.id }">${dto.title }</a></td>
-                 <td><a href="delete?id=${dto.id }">X</a></td>                
-		    </tr>
+			<tr align="center">
+				<td>${dto.id }</td>
+				<td>${dto.writer }</td>
+				<td><a href="view?id=${dto.id }">${dto.title }</a></td>
+				<td><a href="delete?id=${dto.id }">삭제</a></td>
+			</tr>
 		</c:forEach>
 	</table>
-<p> <a href="writeForm">글 작성</a></p>
+	<p>
+		<a href="writeForm">글 작성</a>
+	</p>
 </body>
 </html>
