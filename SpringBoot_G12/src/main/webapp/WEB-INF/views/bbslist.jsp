@@ -10,7 +10,7 @@
 <body>
 
 
-	<table width="500" border="1" cellpaddin="0" cellspacing="0">
+	<table width="500" border="1" cellpadding="0" cellspacing="0">
 		<tr align="center">
 			<td>번호</td>
 			<td>작성자</td>
