@@ -3,6 +3,7 @@ package com.ezen.g12.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,5 +49,28 @@ public class BbsController {
 		mav.setViewName("view");
 		
 		return mav;
+	}
+	
+	
+	@RequestMapping("/updateForm")
+    public ModelAndView updateForm(@RequestParam("id") int id , Model model) {
+            ModelAndView mav = new ModelAndView();
+            mav.addObject("dto",bdao.view(id));
+            mav.setViewName("updateForm");
+            return mav;
+    }
+	
+	   @RequestMapping(value="update", method=RequestMethod.POST)
+       public String update(BbsDto bbsdto) {
+
+               bdao.update(bbsdto);
+
+               return "redirect:/";
+       }
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("id") int id) {	
+		bdao.delete(id);
+		return "redirect:/";
 	}
 }
