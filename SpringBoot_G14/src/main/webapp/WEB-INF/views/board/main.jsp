@@ -36,8 +36,9 @@
 				<th>조회</th>
 			</tr>
 
-			<c:forEach var="board" items="${boardList }">
+			<c:forEach var="board" items="${ boardList }">
 				<tr>
+					<td align="center">${ board.num }</td>
 					<td><a href="boardView?num=${board.num}">${board.title}</a> <c:if
 							test="${board.replycnt > 0}">
 							<span style="color: red; font-weight: bold;">
@@ -57,7 +58,7 @@
 			<c:forEach begin="${paging.beginPage}" end="${paging.endPage}"
 				step="1" var="index">
 				<c:choose>
-					<c:when test="${paging.page==index}"> ${index} </c:when>
+					<c:when test="${paging.page==index}"> [${index}] </c:when>
 					<c:otherwise>
 						<a href="main?page=${index}">${index}</a>
 					</c:otherwise>
@@ -73,6 +74,6 @@
 
 
 
-	<h2>${loginUser.name }(${loginUser.userid })님 로그인</h2>
+	
 </body>
 </html>
