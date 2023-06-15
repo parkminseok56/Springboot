@@ -27,7 +27,7 @@
 		<div class="box">
 			<div class="attr1">비밀번호</div>
 			<div class="attr2">
-				&nbsp;&nbsp; <input type="password" size="20" name="password"
+				&nbsp;&nbsp; <input type="password" size="20" name="pwd"
 					style="width: 200px; height: 20px;">
 			</div>
 		</div>
