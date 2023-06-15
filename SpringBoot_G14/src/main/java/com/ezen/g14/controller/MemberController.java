@@ -52,7 +52,7 @@ public class MemberController {
 	        else if ( mvo.getPwd().equals( membervo.getPwd())) {
 	        	HttpSession session = request.getSession();
 	        	session.setAttribute("loginUser", mvo);
-	        	url  = "main";
+	        	url  = "redirect:/main";
 	    	   
 	       }
 	    }
