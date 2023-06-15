@@ -16,13 +16,21 @@ public class MyService {
 	@Autowired
 	ITransactionDao2 td2;
   
-	@Transactional   // 에러 페이지가 뜨지만 에러 페이지가 뜸.
-	public int buy(String id, int amount, int error) {	
+
+	
+	// @Transactional(rollbackFor) = {RuntimeException.class, Exception.class}}
+	
+	
+	
+	
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+	public int buy(String id, int amount, int error) {	   //	@Transactional   // 에러 페이지가 뜨지만,  Transactional에 의해 롤백문이 가동됨.
 		td1.buy(id, amount);
 		if (error == 0) {
-			int n = 10 / 0; 
+			 int n = 10 / 0; 
+			//throw new RuntimeErrorException(null);
 		} 
-		td2.buy(id, amount);
+		td2.buy(id, amount);	  
 		return error;
 	}
 	
