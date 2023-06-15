@@ -27,8 +27,7 @@
 
 
 	<select id="view" resultType="com.ezen.g12.dto.BbsDto">
-		select * from bbs where id =
-		#{param1}
+		select * from bbs where id =#{param1}
 	</select>
 
 	<update id="update" parameterType="com.ezen.g12.dto.BbsDto">
@@ -41,8 +40,7 @@
 	
 	
 	<delete id="delete" parameterType="com.ezen.g12.dto.BbsDto">
-		delete from bbs where id =
-		#{param1}
+		delete from bbs where id = #{param1}
 	</delete>
 
 </mapper>   

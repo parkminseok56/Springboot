@@ -22,6 +22,10 @@ public class ModelController {
 	public String test1(HttpServletRequest request, Model model) {
 		// RequestMapping 메서드의 매개변수로 HttpServletRequest를 지정하면, 	  
 		//  Spring을 전달해준 request 사용이 가능함.
+		// Model 객체는 컨트롤러에서 데이터를 생성해 이를 JSP 즉 View에 전달하는 역할을 함.
+		// HashMap 형태를 갖고 있고, 키(key)와, 밸류(value) 값을 저장함. 
+		// Servelt의 request.setAttribute()과 비슷한 역할을 함.
+		
 		request.setAttribute("name1", "홍길동");
 
 		// 리턴되는 jsp 파일까지만 해당 내용을 전달 할 수 있는 1회용 자료 전달 도구

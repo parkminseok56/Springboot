@@ -64,7 +64,9 @@ public class BbsController {
        public String update(BbsDto bbsdto) {
 
                bdao.update(bbsdto);
-
+               // bdao.update(bbsdto.getWriter(),bbsdto.getTitle(),bbsdto.getContent(),bbsdto.getId())
+               
+               
                return "redirect:/";
        }
 	
