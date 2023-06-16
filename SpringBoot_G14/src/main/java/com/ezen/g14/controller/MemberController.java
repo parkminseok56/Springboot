@@ -256,12 +256,40 @@ public class MemberController {
 	
 	@PostMapping("/memberJoin")
 	public ModelAndView memberJoin(
-			       @ModelAttribute("dto") @Valid MemberVO membevo,
+			       @ModelAttribute("dto") @Valid MemberVO membervo,
 			       BindingResult result,
 			       @RequestParam(value="re_id",required=false) String re_id,
-			       @RequestParam(value="pwd_check", required=false) String pwd_check
-	) {
-		ModelAndView mnav = new ModelAndView();
+			       @RequestParam(value="pwd_check", required=false) String pwd_check ) {
+		ModelAndView mav = new ModelAndView();
+		// 벨리데이션으로 전송된 값들을 점검하고, 널이나 빈칸이 있으면 memverJoinForm.jsp로 되돌아 가세여
+		// MemberVO 로 자동되지 않는 전달인수 - pwd_check, re_id 들은 별도의 변수로 전달받고, 별도로 이상 유무를
+		// 체크하고 이상이 있을 시 memberJoinForm.jsp로 되돌아 가세여.
+		// 이 때 , re_id도 mav에 별도 저장하고 되돌아 감.
+		// 모두 이상이 없다고 점검이 되면 회원 가입하고, 회원가입 완료라는 메세지와 함께 loginForm.jsp로 되돌아 가세여
+		
+		mav.setViewName("member/memberJoinForm"); // 되돌아갈 페이지의 기본은 회원 가입 페이지임.
+		mav.addObject("re_id", re_id);
+		
+		if( result.getFieldError("userid") != null)
+			mav.addObject("message", result.getFieldError("userid").getDefaultMessage());
+		else if( result.getFieldError("name")!=null)
+			mav.addObject("message", result.getFieldError("name").getDefaultMessage());
+		else if( result.getFieldError("pwd")!=null)
+			mav.addObject("message", result.getFieldError("pwd").getDefaultMessage());
+		else if( result.getFieldError("email")!=null)
+			mav.addObject("message", result.getFieldError("email").getDefaultMessage());
+		else if( result.getFieldError("phone")!=null)
+			mav.addObject("message", result.getFieldError("phone").getDefaultMessage());
+		else if( re_id==null || !membervo.getUserid().equals(re_id))
+			mav.addObject("message", "아이디 중복체크가 되지 않았습니다");
+		else if( !membervo.getUserid().equals(pwd_check))
+			mav.addObject("message", "비밀번호 확인이  되지 않았습니다");
+		else {
+			ms.insertMember(membervo);
+			mav.addObject("message", "회원가입이 완료되었습니다. 로그인하세요");
+			mav.setViewName("member/loginForm");
+		}
+		
 		
 		return mav;
 		
