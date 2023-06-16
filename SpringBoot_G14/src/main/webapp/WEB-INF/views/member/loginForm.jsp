@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +34,16 @@
 
 		<div class="box">
 			<div id="footer">
-				<input type="submit" value="로그인" /> <input type="reset" value="다시작성" />
-				<input type="button" value="회원가입"
-					onClick="location.href='memberJoinForm'" />
+				<input type="submit" value="로그인" /> 
+				<input type="reset"	value="다시작성" />
+				 <input type="button" value=" 일반회원가입"		
+				 onClick="location.href='memberJoinForm'" /> 
+				<input type="button" value="카카오회원가입" 
+				onClick="location.href=
+					'https://kauth.kakao.com/oauth/authorize?client_id=0a12e9117e1fe5a43f4dec0602b709c1&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'" />
+
+
+
 			</div>
 		</div>
 		<div class="box">
