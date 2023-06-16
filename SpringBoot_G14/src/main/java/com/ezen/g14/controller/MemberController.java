@@ -204,8 +204,20 @@ public class MemberController {
         
         // kakao 로 부터 얻은 정보로 member 테이블에서 조회함.
         MemberVO mvo = ms.getMember(kakaoProfile.getId() );
-        
-        
+        if( mvo == null) {
+        // 만약 가입이 안 되었다면
+        	mvo = new MemberVO();
+        	mvo.setUserid( kakaoProfile.getId());
+        	mvo.setEmail( ac.getEmail());
+        	// mvo.setPwd(null);
+        	mvo.setName(pf.getNickname());
+        	mvo.setProvider("kakao");
+        	mvo.setPwd("kakao");
+        	
+        	ms.insertMember(mvo);
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute("loginUser", mvo);
         
 		
 		return "redirect:/main";  		

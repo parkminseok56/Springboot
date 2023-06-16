@@ -18,9 +18,9 @@
 			<tr>
 				<td colspan="5" style="border: white; text-align: right">
 					<div style="float: left;">
-						${loginUser.name}(${loginUser.userid})님 로그인 <input type="button"
-							value="정보수정" onClick="location.href='memberEditForm'" /> <input
-							type="button" value="로그아웃" onClick="location.href='logout'">
+						${loginUser.name}(${loginUser.userid} ${loginUser.provider})님 로그인 
+						<input type="button"value="정보수정" onClick="location.href='memberEditForm'" /> 
+						<input type="button" value="로그아웃" onClick="location.href='logout'">
 					</div>
 					<div style="float: right;">
 						<a href="boardWriteForm">게시글 등록</a>
@@ -39,11 +39,13 @@
 			<c:forEach var="board" items="${ boardList }">
 				<tr>
 					<td align="center">${ board.num }</td>
-					<td><a href="boardView?num=${board.num}">${board.title}</a> <c:if
-							test="${board.replycnt > 0}">
+					<td><a href="boardView?num=${board.num}">${board.title}</a> 
+					    <c:if test="${board.replycnt > 0}">
 							<span style="color: red; font-weight: bold;">
-								[${board.replycnt}] </span>
-						</c:if></td>
+								[${board.replycnt}] 
+							</span>
+					   </c:if>
+					</td>
 					<td align="center">${board.userid}</td>
 					<td align="center"><fmt:formatDate value="${board.writedate }" /></td>
 					<td align="center">${board.readcount}</td>

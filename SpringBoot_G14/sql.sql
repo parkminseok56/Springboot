@@ -16,6 +16,8 @@ create table member(
 insert into member values('홍길동','scott','1234','scott@abc.com','010-1234-124');
 
 
+alter table member add provider varchar2(30);
+
 select * from member;
 
 select * from board;
