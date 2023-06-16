@@ -25,6 +25,8 @@ select * from board;
 select * from reply;
 
 
+update member set provider='board' where userid='scott'
+
 create sequence board_seq start with 1 increment by 1;
 
 

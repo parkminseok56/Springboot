@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.g14.dto.BoardVO;
@@ -58,6 +59,32 @@ public class BoardController {
 		return mav;
 		} 
 
+	@RequestMapping("/boardView")
+	public ModelAndView boardView(@RequestParam("num")int num  ) {
+		ModelAndView mav = new ModelAndView();	
+		
+		HashMap<String,Object> result=bs.boardView( num);
+		mav.addObject("board",result.get("board"));
+		mav.addObject("replyList", result.get("replyList"));
+		
+		mav.setViewName("board/boardView");
+		return mav;
+	}
+
+	
+
+	@RequestMapping("/boardWriteForm")
+	public String write_form(HttpServletRequest request) {
+		
+		String url ="board/boardWriteForm";
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginUser") == null) url="member/loginForm";
+		
+		return url;
+	}
+
+	
+	
 	
 	
 }
