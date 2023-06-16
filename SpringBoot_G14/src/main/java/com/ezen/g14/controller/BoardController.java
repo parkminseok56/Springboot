@@ -2,21 +2,26 @@ package com.ezen.g14.controller;
 
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.g14.dto.BoardVO;
 import com.ezen.g14.dto.Paging;
 import com.ezen.g14.service.BoardService;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class BoardController {
@@ -82,9 +87,47 @@ public class BoardController {
 		
 		return url;
 	}
+    
+	@Autowired
+	ServletContext context;
+	
+	
+	@RequestMapping( value="/boardWrite", method=RequestMethod.POST)
+	public String boardWrite(HttpServletRequest request) {
+	/*
+	 * @ModelAttribute("dto") @Valid BoardVO boardvo, BindingResult result, Model
+	 * 
+	 * 
+	 * 
+	 * model, HttpServletRequest request
+	 				
+		HttpSession session = request.getSession();
+        ServletContext context = session.getServletContext();
+        String path = context.getRealPath("/uplodad");
+	 */
+	String path = context.getRealPath("/uplodad");
+	
+	 BoardVO bvo = new BoardVO();
+	  try {
+          MultipartRequest multi = new MultipartRequest(
+                          request, path, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy()
+          );
+         
+         
+          bvo.setUserid( multi.getParameter("userid") );
+          bvo.setPass( multi.getParameter("pass") );
+          bvo.setTitle(  multi.getParameter("title") );
+          bvo.setEmail( multi.getParameter("email") );        
+          bvo.setContent( multi.getParameter("content") );
+          if( multi.getFilesystemName("imgfilename") == null ) bvo.setImgfilename("");
+          else bvo.setImgfilename ( multi.getFilesystemName("imgfilename") );         
+          bs.insertBoard( bvo );        
+  } catch (IOException e) { e.printStackTrace();
+  }
+  
+  return "redirect:/main";
+}
 
-	
-	
 	
 	
 }

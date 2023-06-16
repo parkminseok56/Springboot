@@ -15,5 +15,20 @@ function idok(id){
         self.close();
 }
  
-
+function boardCheck(){
+	if(document.frm.title.value==""){
+		alert("제목을 입력하시므니다.");
+		document.frm.title.focus();
+		return false;		
+	}else if(document.frm.content.value==""){
+		alert("내용을 입력하시므니다.");
+		document.frm.content.focus();
+		return false;
+	}else{
+		return true;
+	}
+		
+	
+	
+}
 
