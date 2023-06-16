@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!DOCTYPE html>
@@ -16,17 +15,21 @@
         <form name="frm" method="post" action="memberEdit">
         <table>
                 <tr>
-                <th>아이디</th><td>${dto.userid } -${dto.provider }                      
+                <th>아이디</th>
+                        <td>${dto.userid } -${dto.provider }                      
                         <input type="hidden" name="userid" value="${dto.userid}">
-                        <input type="hidden" name="provider" value="${dto.provider}"></td>
+                        <input type="hidden" name="provider" value="${dto.provider}">
+                        </td>
                 </tr>
                 
                 <tr>
-                <th>암호</th><td><input type="password" name="pwd" size="20">*</td>
+                <th>암호</th>
+                       <td><input type="password" name="pwd" size="20">*</td>
                 </tr>
                 
                 <tr>
-                <th>확인</th><td><input type="password" name="pwd_check" size="20">*</td>
+                <th>확인</th>
+                       <td><input type="password" name="pwd_check" size="20">*</td>
                 </tr>
                 
                 <tr>               
@@ -46,8 +49,8 @@
                 
         </table><br><br>
         <input type="submit" value="수정" >
-        <input type="reset" value="다시 작성" >
-        <input type="button" value="로그인페이지로" onClick="location.href='main'">
+        <input type="reset"  value="다시 작성" >
+        <input type="button" value="목록으로" onClick="location.href='main'">
         ${message }
         </form>
 </div>

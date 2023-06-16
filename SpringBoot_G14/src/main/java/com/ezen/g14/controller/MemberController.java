@@ -309,6 +309,43 @@ public class MemberController {
    }
 	
 	
+	@RequestMapping(value="/memberEdit", method=RequestMethod.POST)
+	public String memberEdit(
+			@ModelAttribute("dto") @Valid MemberVO membervo,
+			BindingResult result,
+			@RequestParam(value="pwd_check", required=false)String pwdchk,
+			Model model,
+			HttpServletRequest request ) {
+	String url = "member/memberEditForm";
+			
+			// 비밀번호, 비밀번호 확인 ,이메일 ,전화번호를 확인 후 회원 정보를 수정함.
+		    // 회원 정보 수정 후, 세션의 loginUser를 수정 후 main 으로 이동함.
+	
+	if( result.getFieldError("pwd") != null)
+		model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage());
+	else if( result.getFieldError("name")!=null)
+		model.addAttribute("message", result.getFieldError("name").getDefaultMessage());
+	else if( result.getFieldError("pwd")!=null)
+		model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage());
+	else if( result.getFieldError("email")!=null)
+		model.addAttribute("message", result.getFieldError("email").getDefaultMessage());
+	else if( result.getFieldError("phone")!=null)
+		model.addAttribute("message", result.getFieldError("phone").getDefaultMessage());
+	else if( !membervo.getPwd().equals(pwdchk))
+		model.addAttribute("message", "비밀번호 확인이  되지 않았습니다");
+	else {
+		ms.updateMember(membervo);
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser",membervo);
+		url ="redirect:/main";
+	}
+	
+						
+		return url;		
+   }
+	
+	
+	
 	
 	
 }
