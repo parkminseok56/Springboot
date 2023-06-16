@@ -20,4 +20,12 @@
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="com.ezen.g14.dto.Paging"/>
+    <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.net.HttpURLConnection"/>
+    <fullyQualifiedTypeName name="com.ezen.g14.dto.OAuthToken"/>
+    <fullyQualifiedTypeName name="com.ezen.g14.dto.KakaoProfile"/>
+    <fullyQualifiedTypeName name="com.ezen.g14.dto.KakaoProfile.KakaoAccount"/>
+    <fullyQualifiedTypeName name="com.ezen.g14.dto.KakaoProfile.KakaoAccount.Profile"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
 </qualifiedTypeNameHistroy>

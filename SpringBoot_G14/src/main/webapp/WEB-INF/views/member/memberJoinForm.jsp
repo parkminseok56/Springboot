@@ -17,7 +17,7 @@
         <table>
                 <tr><th>아이디</th><td><input type="text" name="userid" size="20" value="${dto.userid }">*
                         <input type="button" value="중복체크" onClick="idCheck();">
-                        <input type="hidden" value="re_id" value="${re_id }"></td></tr>
+                        <input type="hidden" name="re_id" value="${re_id }"></td></tr>
                 <tr><th>암호</th><td><input type="password" name="pwd" size="20">*</td>
                 </tr>
                 <tr><th>확인</th><td><input type="password" name="pwd_check" size="20">*</td>

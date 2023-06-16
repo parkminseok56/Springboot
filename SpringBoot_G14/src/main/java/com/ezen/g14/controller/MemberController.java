@@ -282,7 +282,7 @@ public class MemberController {
 			mav.addObject("message", result.getFieldError("phone").getDefaultMessage());
 		else if( re_id==null || !membervo.getUserid().equals(re_id))
 			mav.addObject("message", "아이디 중복체크가 되지 않았습니다");
-		else if( !membervo.getUserid().equals(pwd_check))
+		else if( !membervo.getPwd().equals(pwd_check))
 			mav.addObject("message", "비밀번호 확인이  되지 않았습니다");
 		else {
 			ms.insertMember(membervo);
@@ -294,5 +294,21 @@ public class MemberController {
 		return mav;
 		
 	}
+	
+	@RequestMapping("/memberEditForm")
+	public ModelAndView memberEditForm( HttpServletRequest request) {	
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		mav.addObject("dto",mvo);
+		
+		
+		mav.setViewName("member/memberEditForm");
+		return mav;		
+   }
+	
+	
+	
 	
 }
