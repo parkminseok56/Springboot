@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.g14.dto.BoardVO;
@@ -105,7 +104,7 @@ public class BoardController {
         ServletContext context = session.getServletContext();
         String path = context.getRealPath("/uplodad");
 	 */
-	String path = context.getRealPath("/uplodad");
+	  String path = context.getRealPath("/uplodad");
 	
 	 BoardVO bvo = new BoardVO();
 	  try {

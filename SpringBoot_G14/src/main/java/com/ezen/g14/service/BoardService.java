@@ -76,4 +76,9 @@ public class BoardService {
 		return result;
 	}
 
+	public void insertBoard(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
