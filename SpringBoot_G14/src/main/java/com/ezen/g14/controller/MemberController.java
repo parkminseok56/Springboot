@@ -1,7 +1,13 @@
 package com.ezen.g14.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,8 +21,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ezen.g14.dto.KakaoProfile;
+import com.ezen.g14.dto.KakaoProfile.KakaoAccount;
+import com.ezen.g14.dto.KakaoProfile.KakaoAccount.Profile;
 import com.ezen.g14.dto.MemberVO;
+import com.ezen.g14.dto.OAuthToken;
 import com.ezen.g14.service.MemberService;
+import com.google.gson.Gson;
 
 @Controller
 public class MemberController {
@@ -101,7 +112,103 @@ public class MemberController {
 	
 		String code = request.getParameter("code");
 		
-		return "redirect:/main";  
+		String endpoint="https://kauth.kakao.com/oauth/token";
+		URL url = new URL(endpoint); // import java.net.URL;
+		
+		String bodyData="grant_type=authorization_code&";
+		bodyData += "client_id= 0a12e9117e1fe5a43f4dec0602b709c1\r\n&";
+		bodyData += " redirect_uri=http://localhost:8070/kakaoLogin&";
+		bodyData += "code=" +code;
+		
+		
+		// Stream 연결
+		HttpURLConnection conn=(HttpURLConnection)url.openConnection(); //import java.net.HttpURLConnection;
+		// http header 값 넣기
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf=8");
+		conn.setDoOutput(true);
+		
+		
+	    // 인증 절차를 완료하고 User info 요청 위한 정보를 요청 및 수신함.
+        BufferedWriter bw = new BufferedWriter(
+                        new OutputStreamWriter(conn.getOutputStream(), "UTF-8")
+        );
+        bw.write(bodyData);
+        bw.flush();
+        BufferedReader br = new BufferedReader(
+                        new InputStreamReader(conn.getInputStream(), "UTF-8")
+        );
+        String input = "";
+        StringBuilder sb = new StringBuilder(); // 조각난 String 을 조립하기위한 객체
+        while((input=br.readLine())!=null) { 
+                sb.append(input);
+                System.out.println(input);
+        }
+		// sb:
+        
+        
+		// 여기서 부터 Gson 으로  파싱 
+        // 파싱(Parsing)은 주어진 데이터를 문법적 구조로 분석하고 해석하는 과정을 말함. 
+        // 파싱은 특정 형식 또는 규칙에 따라 구성된 데이터를 이해하고 처리하기 위해 사용됨. 
+        // 대부분의 경우, 파싱은 텍스트 기반 데이터를 분석하는 과정을 의미하지만, 
+        // XML, JSON, HTML과 같은 구조화된 데이터 형식을 처리하는 데에도 사용됨.
+        
+        // Gson은 Google에서 개발한 Java 기반의 라이브러리로,
+        // JSON 데이터를 자바 객체로 변환하거나 자바 객체를 JSON 형식으로 직렬화하는 데 사용됨.
+        // Gson은 "Google's JSON"을 줄인 말로, JSON 데이터와 자바 객체 간의 변환을 간편하게 처리할 수 있는 기능을 제공함.
+        
+        // Gson을 사용하면 JSON 데이터를 자바 객체로 변환할 수 있으며, 
+        // 자바 객체를 다시 JSON 형식으로 변환할 수도 있음. 
+        // 이를 통해 웹 서버와 클라이언트 사이에서 JSON 데이터를 주고받을 때 유용하게 사용할 수 있음.
+
+
+        Gson gson = new Gson();
+        
+        OAuthToken oAuthToken = gson.fromJson(sb.toString(), OAuthToken.class);
+        //oAuthToken <- sb{"access_token
+        
+        
+        String endpoint2="https://kapi.kakao.com/v2/user/me";
+        URL url2 = new URL(endpoint2);
+        //import java.net.HttpURLConnection;
+        HttpURLConnection conn2=(HttpURLConnection)url2.openConnection();
+        
+        //header 값 넣기
+        conn2.setRequestProperty("Authorization", "Bearer" + oAuthToken.getAccess_token());
+        conn2.setDoOutput(true);
+        
+        // UserInfo 수신
+        BufferedReader br2 = new BufferedReader(        		
+            new InputStreamReader(conn2.getInputStream(), "UTF-8")
+        );      		
+        String input2 = "";
+        StringBuilder sb2 = new StringBuilder(); 
+        while((input2=br.readLine())!=null) { 
+                 sb2.append(input2);
+                 System.out.println(input2);
+        }
+        
+        // sb2에 도착한 실제 사용자 정보를 사용함
+        // sb2:
+        Gson gson2 = new Gson();
+        KakaoProfile kakaoProfile= gson2.fromJson(sb2.toString(), KakaoProfile.class);
+        // kakaoProfile 
+        
+        System.out.println(kakaoProfile.getId() );
+        
+        KakaoAccount ac = kakaoProfile.getAccount();
+        System.out.println(ac.getEmail());
+        
+        Profile pf = ac.getProfile();
+        System.out.println(pf.getNickname());
+        
+        // kakao 로 부터 얻은 정보로 member 테이블에서 조회함.
+        MemberVO mvo = ms.getMember(kakaoProfile.getId() );
+        
+        
+        
+		
+		return "redirect:/main";  		
 	 }
 	
 	

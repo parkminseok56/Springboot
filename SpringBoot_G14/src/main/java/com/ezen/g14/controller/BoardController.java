@@ -29,7 +29,7 @@ public class BoardController {
 		
 		HttpSession sessison = request.getSession();
 		if ( sessison.getAttribute("loginUser") == null)
-			mav.setViewName("loginform");
+			mav.setViewName("member/loginForm");
 		else {
 			
 		/*	int page = 1;
