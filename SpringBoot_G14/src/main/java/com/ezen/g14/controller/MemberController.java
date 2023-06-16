@@ -18,8 +18,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.g14.dto.KakaoProfile;
 import com.ezen.g14.dto.KakaoProfile.KakaoAccount;
@@ -116,8 +120,8 @@ public class MemberController {
 		URL url = new URL(endpoint); // import java.net.URL;
 		
 		String bodyData="grant_type=authorization_code&";
-		bodyData += "client_id= 0a12e9117e1fe5a43f4dec0602b709c1\r\n&";
-		bodyData += " redirect_uri=http://localhost:8070/kakaoLogin&";
+		bodyData += "client_id=0a12e9117e1fe5a43f4dec0602b709c1&";
+		bodyData += "redirect_uri=http://localhost:8070/kakaoLogin&";
 		bodyData += "code=" +code;
 		
 		
@@ -174,7 +178,7 @@ public class MemberController {
         HttpURLConnection conn2=(HttpURLConnection)url2.openConnection();
         
         //header 값 넣기
-        conn2.setRequestProperty("Authorization", "Bearer" + oAuthToken.getAccess_token());
+        conn2.setRequestProperty("Authorization", "Bearer " + oAuthToken.getAccess_token());
         conn2.setDoOutput(true);
         
         // UserInfo 수신
@@ -183,9 +187,9 @@ public class MemberController {
         );      		
         String input2 = "";
         StringBuilder sb2 = new StringBuilder(); 
-        while((input2=br.readLine())!=null) { 
+        while((input2=br2.readLine())!=null) { 
                  sb2.append(input2);
-                 System.out.println(input2);
+                 System.out.println("input2:"+input2);
         }
         
         // sb2에 도착한 실제 사용자 정보를 사용함
@@ -213,6 +217,7 @@ public class MemberController {
         	mvo.setName(pf.getNickname());
         	mvo.setProvider("kakao");
         	mvo.setPwd("kakao");
+        	mvo.setPhone("");
         	
         	ms.insertMember(mvo);
         }
@@ -223,8 +228,43 @@ public class MemberController {
 		return "redirect:/main";  		
 	 }
 	
+	@RequestMapping("/kakaostart")
+	public @ResponseBody String kakaostart() {
+	     String a = "<script type='text/javascript'>"
+                 + "location.href='https://kauth.kakao.com/oauth/authorize?client_id=0a12e9117e1fe5a43f4dec0602b709c1&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'"
+                 + "</script>";
+            return a;
+	   
+   }
+	
+	@RequestMapping("/memberJoinForm")
+	public  String memberJoinForm() {	   
+    	return "member/memberJoinForm";
+   }
+	
+	@RequestMapping("/idcheck")
+	public ModelAndView idcheck( @RequestParam("userid") String userid) {	
+		ModelAndView mav = new ModelAndView();
+		MemberVO mvo = ms.getMember(userid);
+		if( mvo == null ) mav.addObject("result", -1);
+		else mav.addObject("result",1);
+		mav.addObject("userid",userid);
+		mav.setViewName("member/idcheck");
+		return mav;		
+   }
 	
 	
-	
+	@PostMapping("/memberJoin")
+	public ModelAndView memberJoin(
+			       @ModelAttribute("dto") @Valid MemberVO membevo,
+			       BindingResult result,
+			       @RequestParam(value="re_id",required=false) String re_id,
+			       @RequestParam(value="pwd_check", required=false) String pwd_check
+	) {
+		ModelAndView mnav = new ModelAndView();
+		
+		return mav;
+		
+	}
 	
 }
