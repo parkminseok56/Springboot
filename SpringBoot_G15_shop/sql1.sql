@@ -90,8 +90,8 @@ CREATE TABLE product
 	content varchar2(1000),
 	image varchar2(255),
 	-- 상품 판매 유효 여부
-	useyn char(1) DEFAULT 'y',
-	bestyn char(1) DEFAULT 'n',
+	useyn char(1) DEFAULT 'Y',
+	bestyn char(1) DEFAULT 'N',
 	-- 상품 등록일
 	indate date DEFAULT SYSDATE,
 	PRIMARY KEY (pseq)
