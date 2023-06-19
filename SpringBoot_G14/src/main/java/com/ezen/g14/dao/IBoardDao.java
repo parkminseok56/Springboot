@@ -20,6 +20,9 @@ public interface IBoardDao {
 	void insertReply(ReplyVO replyvo);
 	void insertBoard(BoardVO bvo);
 	void deleteReply(int num);
+	void updateBoard(BoardVO boardvo);
+	void deleteBoard(int num);
+	
 	
 
 	

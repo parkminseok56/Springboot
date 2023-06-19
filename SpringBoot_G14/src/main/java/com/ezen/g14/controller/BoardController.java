@@ -267,6 +267,51 @@ public class BoardController {
       model.addAttribute("dto", bvo);
       return "board/boardUpdateForm";
    }
+   
+   @RequestMapping( value="/boardUpdate", method=RequestMethod.POST)
+   public String boardUpdate( 
+         @ModelAttribute("dto") @Valid BoardVO boardvo,
+         BindingResult result,
+         @RequestParam("oldfilename") String oldfilename,
+         HttpServletRequest request, Model model) {
+	   
+	   String url = "board/boardUpdateForm";
+	      
+
+      if( result.getFieldError("pass") != null)
+         model.addAttribute("message", "비밀번호는 게시물 수정 삭제 시 필요함.");
+      else if( result.getFieldError("title") != null )
+         model.addAttribute("message", "제목은 게시물 수정 삭제 시 필요함." );
+      else if( result.getFieldError("content") != null )
+         model.addAttribute("message", "게시물 내용은  수정 삭제 시 필요함.");
+      else {
+         if( boardvo.getImgfilename() == null || boardvo.getImgfilename().equals(""))
+             boardvo.setImgfilename(oldfilename);      
+         bs.updateBoard(boardvo);
+         url = "redirect:/boardViewWithoutCount?num=" + boardvo.getNum();
+      }
+      return url;
+   }
+   
+   
+   
+   
+   @RequestMapping("boardDelete")
+   public String board_delete(Model model, HttpServletRequest request) {
+	   int num = Integer.parseInt(request.getParameter("num"));    
+       bs.removeBoard(num);   
+       return "redirect:/main";
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }
     	 
       

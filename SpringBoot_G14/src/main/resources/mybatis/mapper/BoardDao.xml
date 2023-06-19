@@ -55,6 +55,14 @@
    </delete>
     
     
+    <update id="updateBoard" parameterType="com.ezen.g14.dto.BoardVO">
+       update board set pass=#{pass}, email=#{email},title=#{title},content=#{content},
+           imgfilename =#{imgfilename}  where num =#{num}           
+    </update>
     
+    
+      <delete id="deleteBoard">
+         delete from board where num=#{param1}
+      </delete>
   
 </mapper>

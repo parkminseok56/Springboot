@@ -44,21 +44,22 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
+					<td>
 					<c:choose>
 					   <c:when test="${empty dto.imgfilename }"> </c:when>
 					     <c:otherwise>
 					        <img src="upload/noname.jpg" height="80" width="80"><br>
 					     </c:otherwise>					  
-					</c:choose>				
-						      
-              <div id="image" style="float:left"> </div>  <input type="hidden" name="imgfilename">
-                             <input type="button" value="파일 선택" onClick="selectimg();">	
-                           
-                                 value="${imgfilename }">                                               	
-                                  <img src="/upload/${dto.imgfilename }" >      
-                                 <img src=""id="previewimg"  style = "width:150px; display:none;">		                   
-					
-				</tr>
+					</c:choose>									      
+                 <div id="image" style="float:left"> </div>  <input type="hidden" name="imgfilename">
+                  <input type="button" value="파일 선택" onClick="selectimg();">	 
+                    <img src=""id="previewimg"  style = "width:150px; display:none;"/> <br> 파일을 수정하고자 할 때만 선택하셈	                                                                                                      	
+                      <input type="hidden" name="oldfilename" value="${dto.imgfilename }"> 
+                      </td>
+                      </tr>	
+                     
+                                	                			
+				
 			</table>
 			<br> <br> 
 			<input type="submit" value="수정"> 			

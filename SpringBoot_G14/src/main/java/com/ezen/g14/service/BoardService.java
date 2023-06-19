@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,8 +103,19 @@ public class BoardService {
 		
 	}
 
-	public BoardVO getBoad(int num) {	
+	public BoardVO getBoard(int num) {	
 		return bdao.getBoard(num);
+	}
+
+	public void updateBoard( BoardVO boardvo) {
+		bdao.updateBoard( boardvo);
+		
+	}
+
+	public void removeBoard(int num) {
+		bdao.deleteBoard(num);
+		
+		
 	}
 
 
