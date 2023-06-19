@@ -12,8 +12,11 @@
 <body>
 	<div id="wrap" align="center">
 		<h1>게시글 등록</h1>
-		<form name="frm" method="post" action="boardWrite"
-			enctype="multipart/form-data">
+		
+		<!-- <form name="frm" method="post" action="boardWrite"	enctype="multipart/form-data"> -->		
+	    <form name="frm" method="post" action="boardWrite">
+			 
+			 
 			<table>
 				<tr>
 					<th>작성자</th>
@@ -41,12 +44,17 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><input type="file" name="imgfilename" /></td>
+					<td>
+                          <input type = "button" value="파일 선택" onClick="selectimg()">	
+                          <div id="image" style="float:left"> </div>
+                              <img src=""id="previewimg"  style = "width:150px; display:none;">		
+                              <input type="hidden" name="imgfilename">	                          
+					</td>
 				</tr>
 			</table>
 			<br> <br> 
 			<input type="submit" value="등록" onclick="return boardCheck'"> 
-			<input type="reset" value="다시 작성"> 
+			<input type="reset"  value="다시 작성"> 
 			<input type="button" value="목록"	onclick="location.href='main'">
 		</form>
 		<br>${message }
