@@ -53,7 +53,7 @@
             <li><a href="catagory?kind=1">Heels</a></li>
             <li><a href="catagory?kind=2">Boots</a></li>
             <li><a href="catagory?kind=3">Sandals</a></li>
-            <li><a href="catagory?kind=4">Sleeper</a></li>
+            <li><a href="catagory?kind=4">Slipper</a></li>
             <li><a href="catagory?kind=5">Sneakers</a></li>   
             <li><a href="catagory?kind=6">On Sale</a></li>
          </ul>
