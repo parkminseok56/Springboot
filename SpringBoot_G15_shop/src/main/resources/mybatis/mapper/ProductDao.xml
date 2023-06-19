@@ -5,4 +5,14 @@
         
   <mapper namespace = "com.ezen.g15.dao.IProductDao">
   
+    <select id="getNewList" resultType="com.ezen.g15.dto.ProductVO">
+      select * from new_pro_view
+    </select>
+    
+    <select id="getBestList" resultType="com.ezen.g15.dto.ProductVO">
+      select * from best_pro_view
+    </select>
+  
+  
+  
   </mapper>

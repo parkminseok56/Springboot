@@ -138,22 +138,25 @@ select * from order_view;
 create or replace view new_pro_view
 as
 select * from
-( select rownum, pseq, name, price2, image from product  where useyn='y'  order by indate desc )
+( select rownum, pseq, name, price2, image from product  where useyn='Y'  order by indate desc )
 where rownum <= 4;
 
 select * from new_pro_view;
 
 
+update product set useyn = upper(useyn)
+update product set bestyn = upper(bestyn)
+
 -- 베스트 상품 view 생성
 create or replace view best_pro_view
 as
 select * from
-(select rownum, pseq, name, price2, image from product  where bestyn='y'  order by indate desc) 
+(select rownum, pseq, name, price2, image from product  where bestyn='Y'  order by indate desc) 
 where  rownum <=4;
 
 select * from best_pro_view;
 
-
+update product set bestyn='Y' where pseq=11
 
 select * from address;
 
