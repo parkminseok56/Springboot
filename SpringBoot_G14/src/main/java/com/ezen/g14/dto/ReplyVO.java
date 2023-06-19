@@ -12,7 +12,7 @@ public class ReplyVO {
   
 	  private int replynum;  
 	  private int boardnum; 
-	  private String  userid; 
+	  private String userid; 
 	  private Timestamp  writedate; 
 	  @NotEmpty(message="내용을 입력하시므니다")
 	  @NotNull(message="내용을 입력하시므니다")	  

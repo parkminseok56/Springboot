@@ -39,6 +39,20 @@
      <select id="selectReply" resultType="com.ezen.g14.dto.ReplyVO">
        select * from reply where boardnum =#{param1}
      </select>
+         
+      <insert id="insertBoard" parameterType="com.ezen.g14.dto.BoardVO">
+      insert into board( num, userid, pass, email, title, content, imgfilename)
+      values( board_seq.nextVal, #{userid}, #{pass}, #{email}, #{title}, #{content}, #{imgfilename}) 
+      </insert>
+      
+    <insert id="insertReply" parameterType="com.ezen.g14.dto.ReplyVO">
+       insert into reply( replynum, boardnum, userid, content)
+       values( reply_seq.nextVal, #{boardnum}, #{userid}, #{content})
+    </insert>
+    
+   <delete id="deleteReply">
+     delete from reply where replynum=#{param1}
+   </delete>
     
     
     

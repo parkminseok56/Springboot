@@ -77,8 +77,34 @@ public class BoardService {
 	}
 
 	public void insertBoard(BoardVO bvo) {
-		// TODO Auto-generated method stub
+		bdao.insertBoard(bvo);
 		
 	}
+
+	public void insertReply(ReplyVO replyvo) {
+		bdao.insertReply(replyvo);
+		
+	}
+
+	public HashMap<String, Object> boardViewWithoutCount(int num) {	
+			HashMap<String, Object> result = new HashMap<String, Object>();		
+			//bdao.plusOneReadCount(num);				
+			BoardVO bvo = bdao.getBoard(num);					
+			List<ReplyVO> list = bdao.selectReply( num);			
+			result.put("board", bvo);
+			result.put("replyList", list);
+			
+		    return result;
+	}
+
+	public void deleteReply(int num) {
+		bdao.deleteReply(num);
+		
+	}
+
+	public BoardVO getBoad(int num) {	
+		return bdao.getBoard(num);
+	}
+
 
 }

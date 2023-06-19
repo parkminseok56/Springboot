@@ -17,6 +17,9 @@ public interface IBoardDao {
 	void plusOneReadCount(int num);
 	BoardVO getBoard(int num);
 	List<ReplyVO> selectReply(int num);
+	void insertReply(ReplyVO replyvo);
+	void insertBoard(BoardVO bvo);
+	void deleteReply(int num);
 	
 
 	

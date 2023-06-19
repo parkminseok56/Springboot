@@ -62,13 +62,10 @@
 					<th>&nbsp;</th>
 				</tr>
 				<tr align="center">
-					<td width="100">${loginUser.userid}<input type="hidden"
-						name="userid" value="${loginUser.userid}"></td>
-					<td width="100"><fmt:formatDate value="${now}"
-							pattern="MM/dd HH:mm" /></td>
-					<td width="670"><input type="text" name="reply" size="85"></td>
-					<td width="100"><input type="submit" value="답글작성"
-						onclick="return reply_check();"></td>
+					<td width="100">${loginUser.userid}<input type="hidden"	name="userid" value="${loginUser.userid}"></td>
+					<td width="100"><fmt:formatDate value="${now}"	pattern="MM/dd HH:mm" /></td>
+					<td width="670"><input type="text" name="content" size="85"></td>
+					<td width="100"><input type="submit" value="답글작성"	onclick="return reply_check();"></td>
 				</tr>
 				<c:forEach var="reply" items="${replyList}">
 					<tr>
@@ -77,7 +74,7 @@
 								pattern="MM/dd HH:mm" /></td>
 						<td>${reply.content}</td>
 						<td align="center"><c:if
-								test="${reply.userid==loginUser.id}">
+								test="${reply.userid==loginUser.userid}">
 								<input type="button" value="삭제"
 									onclick="location.href='deleteReply?num=${reply.replynum}&boardnum=${reply.boardnum}'">
 							</c:if>&nbsp;</td>

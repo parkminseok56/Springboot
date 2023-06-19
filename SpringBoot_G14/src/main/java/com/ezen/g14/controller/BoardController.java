@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.g14.dto.BoardVO;
 import com.ezen.g14.dto.Paging;
+import com.ezen.g14.dto.ReplyVO;
 import com.ezen.g14.service.BoardService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -137,5 +138,66 @@ public class BoardController {
 
 		return "board/completeupload";
 	}
+	
+	@RequestMapping("/addReply")
+	public String addReply(
+			    ReplyVO replyvo,
+			    HttpServletRequest request		
+			) {
+		bs.insertReply( replyvo);
+		return "redirect:/boardViewWithoutCount?num=" + replyvo.getBoardnum();
+	}
 
+	@RequestMapping("/boardViewWithoutCount")
+	public ModelAndView boardViewWithoutCount(@RequestParam("num") int num) {
+		ModelAndView mav = new ModelAndView();
+
+		HashMap<String, Object> result = bs.boardViewWithoutCount(num);
+		mav.addObject("board", result.get("board"));
+		mav.addObject("replyList", result.get("replyList"));
+
+		mav.setViewName("board/boardView");
+		return mav;
+	}
+	
+	@RequestMapping("/deleteReply")
+	public String reply_delete(
+			@RequestParam("num") int num,
+			@RequestParam("boardnum") int boardnum,			   
+			    HttpServletRequest request		
+			) {
+		bs.deleteReply( num);
+		return "redirect:/boardViewWithoutCount?num=" + boardnum();
+	}
+
+	
+
+	
+	@RequestMapping("/boardEditForm")
+	public String board_edit_form(Model model, HttpServletRequest request) {
+		String num = request.getParameter("num");
+		model.addAttribute("num", num);
+		return "/boardCheckPassForm" ;
+	}
+
+	@RequestMapping("/boardEdit")
+	public String  board_edit(
+			@RequestParam("num") int num,
+			@RequestParam("pass") String pass,	
+			Model model,
+			HttpServletRequest request) {
+		  
+		BoardVO bvo = bs.getBoad(num);
+		model.addAttribute("num",num);
+		
+		if(pass.equals(bvo.getPass())) {
+			model.addAttribute("board",bvo);
+			return "redirect:/board/boardUpdateForm?num=" + num;
+		}else {
+			model.addAttribute("message", "비밀번호가 맞지 않습니다.확인해주세요");
+			return "board/boardCheckPassForm";
+		}
+		
+	}
+	
 }
