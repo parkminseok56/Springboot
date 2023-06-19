@@ -15,7 +15,7 @@
      
      <form name="frm" action="fileupload" method="post" enctype="multipart/form-data">
        <h1>파일 선택</h1>
-           <input type = "button" name="image" onchange="selectimg();">	
+           <input type="file" name="image" onchange="selectedimg();">	
             <!-- <input type = "submit" value="파일 적용" -->     
      </form>
 

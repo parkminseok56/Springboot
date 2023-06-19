@@ -45,7 +45,7 @@
 				<tr>
 					<th>이미지</th>
 					<td>
-                          <input type = "button" value="파일 선택" onClick="selectimg()">	
+                          <input type="button" value="파일 선택" onClick="selectimg()">	
                           <div id="image" style="float:left"> </div>
                               <img src=""id="previewimg"  style = "width:150px; display:none;">		
                               <input type="hidden" name="imgfilename">	                          
