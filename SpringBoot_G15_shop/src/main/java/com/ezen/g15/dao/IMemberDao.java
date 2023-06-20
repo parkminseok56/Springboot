@@ -11,5 +11,7 @@ public interface IMemberDao {
 
 	void joinKakao(MemberVO mvo);
 
+	void insertMember(MemberVO membervo);
+
 	
 }

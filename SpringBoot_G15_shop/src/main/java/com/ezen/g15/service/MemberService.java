@@ -20,4 +20,8 @@ public class MemberService {
 		mdao.joinKakao( mvo );
 		
 	}
+
+	public void insertMember( MemberVO membervo) {
+		mdao.insertMember(membervo);
+	}
 }

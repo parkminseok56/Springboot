@@ -15,13 +15,13 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.g15.dto.KakaoProfile;
@@ -192,17 +192,58 @@ public class MemberController {
         }
         
         
-        @RequestMapping("contract")
-        Public String contract(Model model,HttpServletRequest request) {
-            HttpSession session = request.getSession();
-            session.removeAttribute("loginUser");
-            return "redirect:/";
-    }
+        @RequestMapping("/contract")
+        public String contract() {
+           return "member/contract";
+        }
         
         
+
+        @RequestMapping("/joinForm")
+        public String join_form() {
+           return "member/joinForm";
+        }
         
         
+        @RequestMapping("/idCheckForm")
+        public String id_check_form(@RequestParam("id") String id , Model model) {
+        	MemberVO mvo = ms.getMember(id);
+        	int result = 0;
+        	if( mvo == null) result = -1;
+        	else result = 1;
+        	model.addAttribute("result", result);
+        	model.addAttribute("id", id);
+            return "member/idcheck";
+        }
         
-        
+        @RequestMapping(value="join", method=RequestMethod.POST)
+        public String join(
+                        @ModelAttribute("dto") @Valid MemberVO membervo,
+                        BindingResult result, Model model, HttpServletRequest request, 
+                        @RequestParam("reid") String reid, @RequestParam("pwdCheck") String pwdCheck) {
+                
+                model.addAttribute("reid", reid);
+                String url="member/joinForm";
+                
+                if(result.getFieldError("id")!=null)
+                        model.addAttribute("message", result.getFieldError("id").getDefaultMessage());
+            else if(result.getFieldError("pwd")!=null)
+                    model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage());
+            else if(result.getFieldError("name")!=null)
+                model.addAttribute("message", result.getFieldError("name").getDefaultMessage());
+            else if(result.getFieldError("email")!=null)
+                model.addAttribute("message", result.getFieldError("email").getDefaultMessage());
+            else if(!reid.equals(membervo.getId()))
+                model.addAttribute("message", "id 중복체크를 하지 않았습니다");
+            else if(!pwdCheck.equals(membervo.getPwd()))
+                model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다");
+            else {
+                model.addAttribute("message", "회원가입이 완료되었습니다. 로그인하세요");
+                ms.insertMember(membervo);
+                url = "member/login";
+            }
+                
+                return url;
+        }
         
 }
