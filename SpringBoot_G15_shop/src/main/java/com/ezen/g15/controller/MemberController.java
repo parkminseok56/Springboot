@@ -92,88 +92,115 @@ public class MemberController {
         public String login( HttpServletRequest request  ) 
         		throws UnsupportedEncodingException, IOException {
                 
-        	    // 카카오 아이디, 비번 인증 + 아이디 이메일 제공 동의 후 전송되는 암호화 코드
-                String code = request.getParameter("code");               
-                // 전송된 암호화 코드를 이용하여 토큰을 생성
-                // 주소 url 설정
-                String endpoint="https://kauth.kakao.com/oauth/token";
-                URL url =new URL(endpoint);  // import java.net.URL;
-                // 파라미터 설정
-                String bodyData="grant_type=authorization_code&";
-                bodyData += "client_id=262e918b5675b24289ca7b6493e959ff&";
-                bodyData += "redirect_uri=http://localhost:8070/kakaoLogin&";
-                bodyData += "code="+code;
-                // Stream 연결 및 토큰 수신
-                HttpURLConnection conn=(HttpURLConnection)url.openConnection();   // import java.net.HttpURLConnection;
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-                conn.setDoOutput(true);
-                // 토큰 수신
-                BufferedWriter bw=new BufferedWriter(
-                                new OutputStreamWriter(conn.getOutputStream(),"UTF-8")
-                );
-                bw.write(bodyData);
-                bw.flush();
-                BufferedReader br = new BufferedReader(
-                                new InputStreamReader(conn.getInputStream(), "UTF-8")
-                );
-                String input="";
-                StringBuilder sb=new StringBuilder();  // 조각난 String 을 조립하기 위한 객체
-                while((input=br.readLine())!=null){
-                                sb.append(input);
-                                System.out.println(input); // 수신된 토큰을 콘솔에 출력함.
-                }
-                
-                
-                // 위 토큰 애용을 본 따 만든 클래스에 g내ㅜ 파싱으로 옮겨 담슴니다(sb - > OAuthToken.class)           
-                Gson gson=new Gson();                
-                OAuthToken oAuthToken=gson.fromJson(sb.toString(), OAuthToken.class);
-                
-                // 토근을 이용해서 사용자 정보를 요청 수신              
-                String endpoint2="https://kapi.kakao.com/v2/user/me";
-                URL url2 =new URL(endpoint2);
-                // import java.net.HttpURLConnection;               
-                HttpsURLConnection conn2=(HttpsURLConnection)url2.openConnection();
-                conn2.setRequestProperty("Authorization", "Bearer "+oAuthToken.getAccess_token());
-                conn2.setDoOutput(true);
-                BufferedReader br2=new BufferedReader(
-                                new InputStreamReader(conn2.getInputStream(),"UTF-8")
-                );
-                String input2="";
-                StringBuilder sb2=new StringBuilder();
-                while((input2=br2.readLine())!=null) {
-                        sb2.append(input2);
-                        System.out.println(input2);
-                }
-                
-                // 전달받은 회원정보를 kakaoProfile 객체에 담습니다. (sb2 -> KakaoProfile)
-                Gson gson2=new Gson();
-                KakaoProfile kakaoProfile=gson2.fromJson(sb2.toString(), KakaoProfile.class);
-                
-                System.out.println(kakaoProfile.getId());
-                KakaoAccount ac = kakaoProfile.getAccount();
-                System.out.println( ac.getEmail() );
-                
-                Profile pf = ac.getProfile();
-                System.out.println( pf.getNickname() );
-                
-             
-                
-                MemberVO mvo = ms.getMember(  kakaoProfile.getId()  );
-                if( mvo == null ) {             
-                        mvo.setId( kakaoProfile.getId() );
-                        mvo.setEmail( ac.getEmail() );
-                        mvo.setName( pf.getNickname() );
-                        mvo.setProvider("kakao");                      
-                        ms.joinKakao( mvo );
-                      
-                }             
-             
-                HttpSession session = request.getSession();
-                session.setAttribute("loginUser", mvo);        
-                
-                return "redirect:/main";
+        	// 카카오 아이디, 비번 인증 + 아이디 이메일 제공 동의 후 전송되는 암호화 코드
+            String code = request.getParameter("code");
+            // 전송된 암호화코드를 이용해서   토큰을 요청
+            // 토큰 요청 주소 url 설정 및 파라미터
+            String endpoint="https://kauth.kakao.com/oauth/token";
+            URL url =new URL(endpoint);  //import java.net.URL;
+            String bodyData="grant_type=authorization_code&";
+            bodyData += "client_id=0a12e9117e1fe5a43f4dec0602b709c1&";
+            bodyData += "redirect_uri=http://localhost:8070/kakaoLogin&";
+            bodyData += "code="+code;
+            //Stream 연결 및 토큰 수신
+            HttpURLConnection conn=(HttpURLConnection)url.openConnection();   // import java.net.HttpURLConnection;
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+            conn.setDoOutput(true);
+            BufferedWriter bw=new BufferedWriter(    new OutputStreamWriter(conn.getOutputStream(),"UTF-8") );
+            bw.write(bodyData);
+            bw.flush();
+            BufferedReader br = new BufferedReader(   new InputStreamReader(conn.getInputStream(), "UTF-8")   );
+            String input="";
+            StringBuilder sb=new StringBuilder();  // 조각난 String 을 조립하기위한 객체
+            while((input=br.readLine())!=null){
+                  sb.append(input);
+                  System.out.println(input); // 수신된 토큰을 콘솔에 출력합니다
+            }
+            // sb :{
+            // "access_token":"HCqlu2GvtRSqZxYLVfvI_hS5UWBqRQurROmy1u-1CiolDgAAAYjB90hu",
+            // "token_type":"bearer",
+            // "refresh_token":"5JWlJXgIWLWeCxa8O3KIKbfVIsz6NIQTIcQhAB_pCiolDgAAAYjB90hs",
+            // "expires_in":21599,
+            // "scope":"account_email profile_nickname",
+            // "refresh_token_expires_in":5183999
+            // }
+            
+            // 위 토큰내용을 본따 만든 클래스에 gson 파싱으로 옮겨 담습니다( sb  ->  OAuthToken )
+            Gson gson=new Gson();      
+            OAuthToken oAuthToken=gson.fromJson( sb.toString(), OAuthToken.class );
+            
+            // oAuthToken을 이용해서 사용자 정보를 요청 수신
+            String endpoint2="https://kapi.kakao.com/v2/user/me";
+            URL url2 =new URL(endpoint2);
+            // import java.net.HttpURLConnection;
+            HttpsURLConnection conn2=(HttpsURLConnection)url2.openConnection();
+            conn2.setRequestProperty("Authorization", "Bearer "+oAuthToken.getAccess_token());
+            conn2.setDoOutput(true);
+            BufferedReader br2=new BufferedReader(
+                  new InputStreamReader(conn2.getInputStream(),"UTF-8")
+            );
+            String input2="";
+            StringBuilder sb2=new StringBuilder();
+            while((input2=br2.readLine())!=null) {
+               sb2.append(input2);
+               System.out.println(input2);
+            }
+            // sb2 : { 
+            //       "id":2844973154,
+            //       "connected_at":"2023-06-15T12:52:20Z",
+            //       "properties":{
+            //            "nickname":"ITnT"
+            //      },
+            //       "kakao_account":{
+            //           "profile_nickname_needs_agreement":false,
+            //           "profile":{
+            //                  "nickname":"ITnT"
+            //             },
+            //             "has_email":true,
+            //             "email_needs_agreement":false,
+            //            "is_email_valid":true,
+            //            "is_email_verified":true,
+            //            "email":"heejoon73@daum.net"
+            //      }
+            // }
+            
+            // 전달받은 회원정보를 kakaoProfile 객체에 담습니다.( sb2 -> kakaoProfile )
+            Gson gson2=new Gson();
+            KakaoProfile kakaoProfile=gson2.fromJson(sb2.toString(), KakaoProfile.class);
+            
+            System.out.println(kakaoProfile.getId());
+            KakaoAccount ac = kakaoProfile.getAccount();
+            System.out.println( ac.getEmail() );
+            com.ezen.g15.dto.KakaoProfile.KakaoAccount.Profile pf = ac.getProfile();
+            System.out.println( pf.getNickname() );
+            
+            MemberVO mvo = ms.getMember(  kakaoProfile.getId()  );
+            if( mvo == null ) {
+               mvo = new MemberVO();
+               mvo.setId( kakaoProfile.getId() );
+               mvo.setEmail(  ac.getEmail() );
+               mvo.setName( pf.getNickname() );
+               mvo.setProvider( "kakao" );
+               ms.joinKakao( mvo );
+            }
+
+            HttpSession session = request.getSession();
+            session.setAttribute("loginUser", mvo);   
+            
+            return "redirect:/";
         }
+        
+        
+        @RequestMapping("contract")
+        Public String contract(Model model,HttpServletRequest request) {
+            HttpSession session = request.getSession();
+            session.removeAttribute("loginUser");
+            return "redirect:/";
+    }
+        
+        
+        
         
         
         

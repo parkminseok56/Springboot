@@ -36,7 +36,7 @@
                   <li><a href="contract">JOIN</a></li>
                </c:when>
                 <c:otherwise>
-                      <li style="color:blue;font-weight:bold;font-size:110%;">
+                      <li style="color:blue;font-weight:bold;font-size:100%; width:100px;">
                          ${loginUser.name}(${loginUser.id})</li>
                       <li><a href="memberEditForm">정보수정</a></li>
                       <li><a href="logout">LOGOUT</a></li>
@@ -44,7 +44,7 @@
             </c:choose>
             <li><a href="cartList">CART</a></li>
             <li><a href="myPage">MY PAGE</a></li>
-             <li ><a href="qnaList">Q&amp;A(1:1)</a></li>
+             <li ><a href="qnaList">고객센터</a></li>
              <!-- <li ><a href="admin">admin</a></li> -->
          </ul>
       </nav>
