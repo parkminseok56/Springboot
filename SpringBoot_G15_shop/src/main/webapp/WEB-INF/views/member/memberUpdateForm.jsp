@@ -94,6 +94,9 @@
 		
 		
 	    <label>Phone Number</label>	<input  type="text" name="phone"  value="${dto.phone}"><br>
+	   
+	    
+	    
 	</fieldset><div class="clear"></div>
 	<div id="buttons">
 		<input type="submit" value="정보수정" class="submit" > 
