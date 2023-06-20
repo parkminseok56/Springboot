@@ -9,5 +9,7 @@ public interface IMemberDao {
 
 	MemberVO getMember(String id);
 
+	void joinKakao(MemberVO mvo);
+
 	
 }
