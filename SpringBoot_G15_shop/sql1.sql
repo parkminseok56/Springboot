@@ -12,7 +12,7 @@ DROP TABLE worker CASCADE CONSTRAINTS;
 
 
 select * from Member
-
+select * from Cart
 /* Create Tables */
 
 CREATE TABLE address
