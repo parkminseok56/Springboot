@@ -2,6 +2,7 @@
 <aop-reference-model>
 <aop-project name="SpringBoot_G01"/>
 <aop-project name="SpringBoot_G12"/>
+<aop-project name="SpringBoot_G15_shop"/>
 <aop-project name="SpringBoot_G11"/>
 <aop-project name="SpringBoot_G03"/>
 <aop-project name="SpringBoot_G14"/>

@@ -11,7 +11,7 @@ DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE worker CASCADE CONSTRAINTS;
 
 
-
+select * from Member
 
 /* Create Tables */
 
