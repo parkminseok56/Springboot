@@ -246,4 +246,20 @@ public class MemberController {
                 return url;
         }
         
+        
+        @RequestMapping("/memberEditForm")
+        public String member_Edit_Form(Model model, HttpServletRequest request) {
+        	
+        	  HttpSession session = request.getSession();
+        	  MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+        	  model.addAttribute("dto", mvo);
+        	
+           return "member/memberUpdateForm";
+        }
+        
+        
+        
+        
+        
+        
 }
