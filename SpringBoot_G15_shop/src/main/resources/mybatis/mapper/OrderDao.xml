@@ -28,9 +28,19 @@
       select * from order_view where oseq=#{param1}
     </select>
     
-     <insert id="insertOrderDetailOne" >
+     <insert id="insertOrderDetailOne">
        insert into order_detail(odseq, oseq, pseq, quantity)
        values(order_detail_seq.nextval, #{param3},#{ param1},#{param2} ) 
     </insert>
+    
+     <select id="selectSeqOrderIng" resultType="int">
+        select distinct oseq from order_view
+        where id=#{param1} and result='1' order by oseq desc
+     </select>
+     
+     <select id="selectSeqOrderAll" resultType="int">
+        select distinct oseq from order_view
+        where id=#{param1}  order by oseq desc
+     </select>
   
   </mapper>

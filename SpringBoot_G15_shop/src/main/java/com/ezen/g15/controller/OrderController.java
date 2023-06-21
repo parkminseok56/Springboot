@@ -82,25 +82,57 @@ public class OrderController {
 	@RequestMapping("myPage") // 진행 중인 주문 내역
 	public ModelAndView mypage( HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		
+						
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");		
 		if (mvo == null) {
 		   mav.setViewName("member/login");
-	} else {
+	    } else {
 		  ArrayList<OrderVO> finalList = os.getFinalListIng( mvo.getId());
-			
-		}
-		mav.addObject("title", "진행중인 내역");
-		mav.addObject("orderList", finalList);
-		mav.setViewName("mypage/mypage");
-			
+		  mav.addObject("title", "진행중인 내역");
+		  mav.addObject("orderList", finalList);
+	      mav.setViewName("mypage/mypage");
+		}			
        return mav;
 }	
 	
+	@RequestMapping("orderAll") // 진행 중인 주문 내역
+	public ModelAndView orderAll( HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+						
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");		
+		if (mvo == null) {
+		   mav.setViewName("member/login");
+	    } else {
+		  ArrayList<OrderVO> finalList = os.getFinalListAll( mvo.getId());
+		  mav.addObject("title", "총 주문 내역");
+		  mav.addObject("orderList", finalList);
+	      mav.setViewName("mypage/mypage");
+		}			
+       return mav;
+}	
 	
-	
-	
-	
+	@RequestMapping("orderDetail") 
+	public ModelAndView order_detail(
+			HttpServletRequest request,
+			@RequestParam("oseq") int oseq) {
+	   		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");	
+		
+		if (loginUser == null) {
+		   mav.setViewName("member/login");
+		} else {
+	      HashMap<String, Object> result = os.listOrderByOseq(oseq);
+	      List<OrderVO> orderList = (List<OrderVO>) result.get("orderList");
+		  mav.addObject("orderDetail", orderList.get(0));
+		  mav.addObject("orderList", orderList);
+		  mav.addObject("totalPrice", (Integer)result.get("totalPrice"));
+	      mav.setViewName("mypage/orderDetail");
+		}			
+       return mav;
+}	
 	
 }

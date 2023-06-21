@@ -22,4 +22,10 @@ public interface IOrderDao {
 
 	void insertOrderDetailOne(int pseq, int quantity, int oseq);
 
+	List<Integer> selectSeqOrderIng(String id);
+
+	List<Integer> selectSeqOrderAll(String id);
+
+	
+
 }
