@@ -6,27 +6,26 @@
   <mapper namespace = "com.ezen.g15.dao.IOrderDao">
   
   
-  <insert id="insertOrders" parameterType="com.ezen.g15.dto.OrderVO">
-       Insert into orderList(oseq, id )
-       values(cart_seq.nextval, #{id} ) 
-  </insert>
+   <insert id="insertOrders" >
+       insert into orders(oseq, id )
+       values(orders_seq.nextval, #{param1} ) 
+    </insert>
+   
+   <select id="LookupMaxOseq" resultType="_int">
+      select max (oseq) from orders
+    </select>
   
-  <select id="LookupMaxOseq" resultType="com.ezen.g15.dto.OrderVO">
-    select max oseq from orders
-  </select>
-  
-    <insert id="insertOrderDetail" parameterType="com.ezen.g15.dto.OrderVO">
-       Insert into orderList(oseq, id, pseq, quantity)
-       values(cart_seq.nextval, #{id},#{ oseq},#{quantity} ) 
+    <insert id="insertOrderDetail" >
+       insert into order_detail(odseq, oseq, pseq, quantity)
+       values(order_detail_seq.nextval, #{param2},#{ param1.pseq},#{param1.quantity} ) 
     </insert>
   
-  <select id="getOrderList" resultType="com.ezen.g15.dto.OrderVO">
-     select * from order_view where id=#{param1} order by oseq desc
-  </select>
-  
-   <delete id="deleteCart">
-     delete from cart  where oseq=#{param1} 
-  </delete>
-  
+    <delete id="deleteCart">
+     delete from cart  where cseq=#{param1} 
+    </delete>
+   
+    <select id="listOrderByOseq" resultType="com.ezen.g15.dto.OrderVO">
+      select * from order_view where oseq=#{param1}
+    </select>
   
   </mapper>
