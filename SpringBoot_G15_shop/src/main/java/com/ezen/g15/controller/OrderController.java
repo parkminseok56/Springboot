@@ -1,5 +1,6 @@
 package com.ezen.g15.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,11 +61,42 @@ public class OrderController {
 
 	
 	
+	@RequestMapping("/orderInsertOne") 
+	public String orderInsertOne(
+			@RequestParam("pseq") int pseq,
+			@RequestParam("quantity") int quantity,
+			HttpServletRequest request) {
+		int oseq = 0;
+		
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
+		if (mvo == null) {
+			return "member/login";
+		} else {
+			oseq = os.insertOrderOne ( pseq, quantity, mvo.getId());
+		}
+		return "redirect:/orderList?oseq=" + oseq;
+	}
 	
 	
-	
-	
-	
+	@RequestMapping("myPage") // 진행 중인 주문 내역
+	public ModelAndView mypage( HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");		
+		if (mvo == null) {
+		   mav.setViewName("member/login");
+	} else {
+		  ArrayList<OrderVO> finalList = os.getFinalListIng( mvo.getId());
+			
+		}
+		mav.addObject("title", "진행중인 내역");
+		mav.addObject("orderList", finalList);
+		mav.setViewName("mypage/mypage");
+			
+       return mav;
+}	
 	
 	
 	

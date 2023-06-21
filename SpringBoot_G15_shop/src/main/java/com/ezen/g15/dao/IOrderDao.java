@@ -20,4 +20,6 @@ public interface IOrderDao {
 
 	List<OrderVO> listOrderByOseq(int oseq);
 
+	void insertOrderDetailOne(int pseq, int quantity, int oseq);
+
 }

@@ -27,5 +27,10 @@
     <select id="listOrderByOseq" resultType="com.ezen.g15.dto.OrderVO">
       select * from order_view where oseq=#{param1}
     </select>
+    
+     <insert id="insertOrderDetailOne" >
+       insert into order_detail(odseq, oseq, pseq, quantity)
+       values(order_detail_seq.nextval, #{param3},#{ param1},#{param2} ) 
+    </insert>
   
   </mapper>

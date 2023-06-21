@@ -1,5 +1,6 @@
 package com.ezen.g15.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,4 +57,46 @@ public class OrderService {
 		result.put("totalPrice",totalPrice);
 		return result;
 	}
+
+	public int insertOrderOne(int pseq, int quantity, String id) {
+		HashMap<String, Object> result = new HashMap<String, Object> ();
+		int oseq = 0;	
+		odao.insertOrders(id);		
+		oseq = odao.LookupMaxOseq();		
+		odao.insertOrderDetailOne( pseq, quantity, oseq);	
+		return oseq;
+		}
+
+	public ArrayList<OrderVO> getFinalListIng(String id) {
+		
+		//최종 리턴될 오더 리스트
+		ArrayList<OrderVO>orderList = new ArrayList<OrderVO>();
+		
+		// 1. id로 진행 중인 주문의 주문번호들을 조회함.
+		List<Integer> oseqList = odao.selectSeqOrderIng(id);
+		// 2. 주문번호들로 반복실행을 실행함.
+		for( int oseq : oseqList) {
+			
+			// 3. 하나의 주문번호로 주문내역을 조회함.
+		    List<OrderVO> orderListIng = odao.listOrderByOseq(oseq);
+		    
+		    // 4. orderListIng 에서 첫 번째 주문을 따로 저장함.
+		    OrderVO ovo = orderListIng.get(0);
+		    
+		    // 5. orderListIng의 주문들의 요약정보를 ovo에 저장함.
+		    ovo.setPname(ovo.getPname() + " 포함 " + orderListIng.size() + " 건");
+		    int totalPrice = 0;
+		    for (OrderVO ovo1 : orderListIng)
+		    	totalPrice += ovo1.getPrice2() * ovo1.getQuantity();
+		    ovo.setPrice2(totalPrice);
+		    
+		    // 6.리턴될 리스트에 ovo를 add함.
+		    orderList.add(ovo);
+		}
+		return orderList;
+	}			
+	
+	
+		
+	
 }
