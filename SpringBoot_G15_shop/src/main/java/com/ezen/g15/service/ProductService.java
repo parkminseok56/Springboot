@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.g15.dao.IProductDao;
+import com.ezen.g15.dto.BannerVO;
 import com.ezen.g15.dto.ProductVO;
 
 @Service
@@ -33,6 +34,10 @@ public class ProductService {
 
 	public ProductVO getProduct(int pseq) {
 		return pdao.getProduct( pseq);
+	}
+
+	public List<BannerVO> getBannerList() {
+		return pdao.getBannerList();
 	}
 	
 }

@@ -371,7 +371,7 @@ public class AdminController {
 		if (bannervo.getOrder_seq() == 6 ) bannervo.setUseyn("N");
 		else bannervo.setUseyn("Y");
 		as.insertBanner(bannervo);
-		return "adminBannerList";
+		return "redirect:/adminBannerList";
 		
 	}
 }

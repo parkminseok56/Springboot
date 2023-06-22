@@ -7,6 +7,8 @@ function go_next(){
 	}
 	
 }
+
+
 function idcheck(){
         if(document.formm.id.value==""){
                 alert("아이디를 입력하고 중복체크를 진행하세요");

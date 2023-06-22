@@ -185,6 +185,7 @@ select * from qna;
 
 update qna set pass='1234', passcheck='Y' where qseq=10;
 
+select * from banner;
 
 create table banner(
     bseq number(5),

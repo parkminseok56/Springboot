@@ -15,7 +15,7 @@
     $(function(){
        var num=0;
        setInterval(function(){
-            $('#imgs').animate({ left : num * -972 },1000);
+            $('#imgs').animate({ left : num * -968 },1000);
                 num++;
                 if(num==5)num=0;
         }, 2000);

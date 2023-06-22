@@ -88,7 +88,7 @@
      
       <insert id="insertBanner" parameterType="com.ezen.g15.dto.BannerVO">
        insert into banner(bseq, subject, order_seq, useyn,image )
-          values(banner_seq.nextval, #{subject},#{order_Seq,},#{useyn},#{image}) 
+          values(banner_seq.nextval, #{subject},#{order_seq,},#{useyn},#{image}) 
        </insert>
     
   </mapper>
