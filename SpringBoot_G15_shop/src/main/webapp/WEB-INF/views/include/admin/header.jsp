@@ -30,7 +30,7 @@ $(function(){
 	        
 	        
 	        success : function(data){  // controller에서 리턴된 해시맵이 data 로 전달됨.
-	            if(data.STATUS == 1){  	//동적으로 div태그 달아주기.
+	            if(data.STATUS == 1){  	// 동적으로 div태그 달아주기.
 	            	$("#filename").append("<div>"+data.FILENAME+"</div>");
 	            	$("#image").val(data.FILENAME);
 	            	$("#filename").append("<img src='product_images/"+data.FILENAME+"' height='150'/>");

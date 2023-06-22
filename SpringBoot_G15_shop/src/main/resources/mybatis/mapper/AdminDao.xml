@@ -24,5 +24,11 @@
   </select>
   
   
+  <insert id="insertProduct" parameterType="com.ezen.g15.dto.ProductVO">
+       insert into product(pseq, kind, name, price1, price2, price3, content, image )
+          values(product_seq.nextval, #{kind},#{name},#{price1},#{price2},
+          #{ price3}, #{content},#{image} ) 
+    </insert>
+  
   
   </mapper>

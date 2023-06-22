@@ -13,6 +13,8 @@ public interface IAdminDao {
 	String getPwd(String workId);
 	int getAllCount(String string, String string2, String key);
 	List<ProductVO> listProduct(Paging paging, String key);
+	void insertProduct(ProductVO productvo);
+
 
 	
 }

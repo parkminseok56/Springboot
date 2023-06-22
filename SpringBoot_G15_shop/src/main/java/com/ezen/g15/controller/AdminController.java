@@ -7,10 +7,13 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ezen.g15.dto.Paging;
 import com.ezen.g15.dto.ProductVO;
 import com.ezen.g15.service.AdminService;
+import com.ezen.g15.service.ProductService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -126,12 +130,60 @@ public class AdminController {
 			result.put("STATUS",1);
 			result.put("FILENAME", multi.getFilesystemName("fileimage"));
 		}catch (IOException e) {e.printStackTrace();
-		
+
 	}
 		return result;
 	}
 	
 	
+	
+	
+	
+	@RequestMapping(value="/productWrite", method=RequestMethod.POST)
+	public String productWrite(  @ModelAttribute("dto") @Valid ProductVO productvo,
+		     BindingResult result,	
+		     HttpServletRequest request,
+		     Model model) {
+		 
+		String url ="admin/product/productWriteForm";
+		
+		if( result.getFieldError("name")!=null)
+	        model.addAttribute("message", result.getFieldError("name").getDefaultMessage());	
+		else if( result.getFieldError("price2")!=null)
+	        model.addAttribute("message", result.getFieldError("price2").getDefaultMessage());
+		else if( result.getFieldError("content")!=null)
+	        model.addAttribute("message", result.getFieldError("content").getDefaultMessage());
+		else if( result.getFieldError("image")!=null)
+	        model.addAttribute("message", result.getFieldError("image").getDefaultMessage());
+		else {
+			as.insertProduct ( productvo);
+			url = "redirect:/productList";						
+		}
+		
+		return url; 
+	} 
+	
+	@Autowired
+	ProductService ps;
+	
+	
+	@RequestMapping("adminProductDetail")
+    public ModelAndView product_detail(
+    		HttpServletRequest request, 
+            @RequestParam("pseq") int pseq) {
+		
+            ModelAndView mav = new ModelAndView();
+            mav.addObject("productVO", ps.getProduct(pseq));
+            
+                
+            String kindList[] = { "0", "Heels", "Boots", "Sandals", "Slippers", "Snakers", "Sale" };
+            int index = Integer.parseInt( ps.getProduct(pseq).getKind()  );
+            
+            mav.addObject("kind", kindList[index]);
+            mav.setViewName("admin/product/productDetail");
+            
+            return mav;
+    }
 	
 	
 }
