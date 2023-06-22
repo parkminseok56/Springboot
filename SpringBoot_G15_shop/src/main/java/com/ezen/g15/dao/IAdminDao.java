@@ -21,6 +21,7 @@ public interface IAdminDao {
 	List<OrderVO> listOrder(Paging paging, String key);
 	List<MemberVO> listMember(Paging paging, String key);
 	List<QnaVO> listQna(Paging paging, String key);
+	void updateOrderResult(int odseq);
 
 
 	

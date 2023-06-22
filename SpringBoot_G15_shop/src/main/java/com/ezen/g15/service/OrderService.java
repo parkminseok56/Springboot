@@ -114,6 +114,13 @@ public class OrderService {
 				    orderList.add(ovo);
 				}
 				return orderList;
+	}
+
+	public void updateOrderEnd(int[] results) {
+
+		for(int odseq : results )
+			odao.updateOrderEnd(odseq);
+		
 	}			
 	
 	

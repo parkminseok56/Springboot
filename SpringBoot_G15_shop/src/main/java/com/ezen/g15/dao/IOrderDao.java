@@ -26,6 +26,8 @@ public interface IOrderDao {
 
 	List<Integer> selectSeqOrderAll(String id);
 
+	void updateOrderEnd(int odseq);
+
 	
 
 }

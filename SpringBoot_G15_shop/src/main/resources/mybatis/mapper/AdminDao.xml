@@ -59,15 +59,19 @@
   
   
   <select id="listOrder" resultType="com.ezen.g15.dto.OrderVO">
-     select * from(
-     select * from(
-         select rownum as rn, o.*from
-         ((select * from order_view where pname like '%'||#{param2}||'%' order by oseq desc) o)
-     ) where rn &gt; = #{param1.startNum}
-     ) where rn &lt; = #{param1.endNum}
+        select * from(
+        select * from(
+         select rownum as rn, p.* from
+         ((select * from order_view where pname like '%'||#{param2}||'%' order by result, odseq desc) p)
+         )where rn &gt;= #{param1.startNum}
+         )where rn &lt;= #{param1.endNum}
      
   </select>
   
+  
+  <update id="updateOrderResult">
+       update  order_detail set result = result + 1 where odseq =#{param1}      
+    </update >
   
   
   </mapper>

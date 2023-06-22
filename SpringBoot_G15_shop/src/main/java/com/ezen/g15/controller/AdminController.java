@@ -249,22 +249,22 @@ public class AdminController {
 
 
 	@RequestMapping("/adminOrderList")
-	public ModelAndView adminOrderList( HttpServletRequest request ) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("workId");
-		if(id==null)
-			mav.setViewName("redirect:/admin");
-		else {
-			HashMap<String, Object> result =  as.getOrderList( request );
-			mav.addObject("orderList",  (List<OrderVO>)result.get("ordertList")  );
-			mav.addObject("paging", (Paging)result.get("paging") );
-			mav.addObject("key", (String)result.get("key") );
-			mav.setViewName("admin/order/orderList");
-			// Controller 는 Service 가 작업해서 보내준 결과들을 mav 에 잘 넣어서 목적지로 이동만 합니다.
-		}
-		return mav;
-	}
+	   public ModelAndView adminOrderList(HttpServletRequest request) {
+	      ModelAndView mav=new ModelAndView();
+	      HttpSession session = request.getSession();
+	      String id = (String)session.getAttribute("workId");
+	      if(id==null)
+	         mav.setViewName("redirect:/admin");
+	      else {
+	         HashMap<String, Object> result =  as.getOrderList( request );
+	         mav.addObject("orderList",  (List<OrderVO>)result.get("orderList")  );
+	         mav.addObject("paging", (Paging)result.get("paging") );
+	         mav.addObject("key", (String)result.get("key") );
+	         mav.setViewName("admin/order/orderList");
+	      }
+	      
+	      return mav;
+	   }
 
 
 	@RequestMapping("/memberList")
@@ -306,47 +306,17 @@ public class AdminController {
 
 	@RequestMapping("orderUpdateResult")
 	public String productUpdate( 
-			@ModelAttribute("dto") @Valid ProductVO productvo,
-		     BindingResult result,	
-		     HttpServletRequest request,
-		     Model model) {
-		
-   String url ="admin/product/productUpdate";
-		
-		if( result.getFieldError("name")!=null)
-	        model.addAttribute("message", result.getFieldError("name").getDefaultMessage());	
-		else if( result.getFieldError("price2")!=null)
-	        model.addAttribute("message", result.getFieldError("price2").getDefaultMessage());
-		else if( result.getFieldError("content")!=null)
-	        model.addAttribute("message", result.getFieldError("content").getDefaultMessage());
-		else if( result.getFieldError("image")!=null)
-	        model.addAttribute("message", result.getFieldError("image").getDefaultMessage());
-		else {
+			@RequestParam("result") int [] results ) {
+	
+		 // 전달된 results 속에 담긴 odseq 들을 하나씩 검색해서 result 값을 다음값으로 변경
+		as.updateOrderResult( results);
 			
-			if(request.getParameter("bestyn") != null)
-				productvo.setBestyn("Y");
-			else productvo.setBestyn("N");
-			
-			if(request.getParameter("useyn") != null)
-				productvo.setUseyn("Y");
-			else productvo.setUseyn("N");
-			
-			if(productvo.getImage() == null || productvo.getImage().equals(""))
-				productvo.setImage( request.getParameter("oldfilename"));
-			else {
-				
-			
-			as.updateProduct ( productvo);
-			url = "redirect:/adminProductDetail?pseq= " + productvo.getPseq();	
-			}
-		}
-		
-		return url; 
-		
-		
+		return "redirect:/adminOrderList"; 				
 	}
 
-
+	
+	
+	
 }
 
 

@@ -99,47 +99,53 @@ public class AdminService {
 		
 	}
 
-	public HashMap<String, Object> getOrderList(HttpServletRequest request) {		
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		HttpSession session = request.getSession();
-		if( request.getParameter("first")!=null ) {
-			session.removeAttribute("page");
-			session.removeAttribute("key");
-		}		
-		int page = 1;
-		if( request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-			session.setAttribute("page", page);
-		} else if( session.getAttribute("page")!= null ) {
-			page = (int) session.getAttribute("page");
-		} else {
-			page = 1;
-			session.removeAttribute("page");
-		}
-		String key = "";
-		if( request.getParameter("key") != null ) {
-			key = request.getParameter("key");
-			session.setAttribute("key", key);
-		} else if( session.getAttribute("key")!= null ) {
-			key = (String)session.getAttribute("key");
-		} else {
-			session.removeAttribute("key");
-			key = "";
-		} 
-		Paging paging = new Paging();
-		paging.setPage(page);		
-		int count = adao.getAllCount( "order_view", "pname", key );
-		paging.setTotalCount(count);
-		paging.paging();	
-		
-		List<OrderVO> list = adao.listOrder( paging , key );
-		result.put("orderList" , list);
-		result.put("paging", paging);
-		result.put("key", key);
-	
-		return result;
-	
-	}
+	public HashMap<String, Object> getOrderList(HttpServletRequest request) {
+	      HashMap<String, Object> result = new HashMap<String, Object>();
+	      HttpSession session = request.getSession();
+
+	      if( request.getParameter("first")!=null ) {
+	         session.removeAttribute("page");
+	         session.removeAttribute("key");
+	      }
+	      
+	      int page = 1;
+	      if( request.getParameter("page") != null) {
+	         page = Integer.parseInt(request.getParameter("page"));
+	         session.setAttribute("page", page);
+	      } else if( session.getAttribute("page")!= null ) {
+	         page = (int) session.getAttribute("page");
+	      } else {
+	         page = 1;
+	         session.removeAttribute("page");
+	      }
+	      
+	      // 페이지와 비슷한 방식으로 검색어(key)도 설정합니다
+	      String key = "";
+	      if( request.getParameter("key") != null ) {
+	         key = request.getParameter("key");
+	         session.setAttribute("key", key);
+	      } else if( session.getAttribute("key")!= null ) {
+	         key = (String)session.getAttribute("key");
+	      } else {
+	         session.removeAttribute("key");
+	         key = "";
+	      } 
+	      
+	      // Paging 객체를 설정합니다
+	      Paging paging = new Paging();
+	      paging.setPage(page);
+	      
+	      int count = adao.getAllCount( "order_view", "pname", key );
+	      paging.setTotalCount(count);
+	      paging.paging();
+	      
+	      List<OrderVO> orderList = adao.listOrder( paging , key );
+	      result.put("orderList" , orderList);
+	      result.put("paging", paging);
+	      result.put("key", key);
+	      
+	      return result;
+	   }
 
 	public HashMap<String, Object> getMemberList(HttpServletRequest request) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
@@ -223,6 +229,13 @@ public class AdminService {
 		return result;
 	
 }
+
+	public void updateOrderResult(int[] results) {
+		
+		for(int odseq : results)
+		adao.updateOrderResult(odseq);
+		
+	}
 
 
 

@@ -81,7 +81,11 @@ function enabled() {
 }
 
 
-
+function orderEnd( oseq, odseq){
+	// oseq는 orderDetail로 되돌아오기위한 주문번호, odseq는 result는 변경하기 위한 주문 상세번호
+	
+	location.href="orderEnd?odseq=" + odseq + "&oseq=" + oseq;
+}
 
 
 

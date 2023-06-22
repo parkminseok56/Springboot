@@ -14,7 +14,7 @@ select * from qna
 select * from product
 select * from worker
 select * from Member
-select * from orders
+select * from order_view
 select * from qna
 /* Create Tables */
 
