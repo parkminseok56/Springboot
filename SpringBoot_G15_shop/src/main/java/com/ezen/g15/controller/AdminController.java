@@ -185,10 +185,60 @@ public class AdminController {
             return mav;
     }
 	
-	
+	@RequestMapping("productUpdateForm")
+    public ModelAndView product_update_form( 
+    		Model model,
+    		HttpServletRequest request,
+            @RequestParam("pseq") int pseq) {
+            ModelAndView mav = new ModelAndView();
+            
+            model.addAttribute("productVO", ps.getProduct(pseq));       
+            String kindList[] = { "Heels", "Boots", "Sandals", "Slippers", "Snakers", "Sale" };    
+            mav.addObject("kindList", kindList);
+            mav.setViewName("admin/product/productUpdate");
+            
+            return mav;
 }
 
 
+	@RequestMapping(value="/productUpdate", method=RequestMethod.POST)
+	public String productUpdate( 
+			@ModelAttribute("dto") @Valid ProductVO productvo,
+		     BindingResult result,	
+		     HttpServletRequest request,
+		     Model model) {
+		
+   String url ="admin/product/productUpdate";
+		
+		if( result.getFieldError("name")!=null)
+	        model.addAttribute("message", result.getFieldError("name").getDefaultMessage());	
+		else if( result.getFieldError("price2")!=null)
+	        model.addAttribute("message", result.getFieldError("price2").getDefaultMessage());
+		else if( result.getFieldError("content")!=null)
+	        model.addAttribute("message", result.getFieldError("content").getDefaultMessage());
+		else if( result.getFieldError("image")!=null)
+	        model.addAttribute("message", result.getFieldError("image").getDefaultMessage());
+		else {
+			
+			if(request.getParameter("bestyn") != null)
+				productvo.setBestyn("Y");
+			else productvo.setBestyn("N");
+			
+			if(request.getParameter("useyn") != null)
+				productvo.setUseyn("Y");
+			else productvo.setUseyn("N");
+			
+			if(productvo.getImage() == null || productvo.getImage().equals(""))
+				productvo.setImage( request.getParameter("oldfilename"));
+			
+			as.updateProduct ( productvo);
+			url = "redirect:/adimnProductDetail?pseq= " + productvo.getPseq();						
+		}
+		
+		return url; 
+		
+		
+	}
 
 
 
@@ -201,10 +251,7 @@ public class AdminController {
 
 
 
-
-
-
-
+}
 
 
 

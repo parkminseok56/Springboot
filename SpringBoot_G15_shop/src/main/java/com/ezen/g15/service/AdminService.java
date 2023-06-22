@@ -91,6 +91,11 @@ public class AdminService {
 		adao.insertProduct(productvo);
 		
 	}
+
+	public void updateProduct( ProductVO productvo) {
+		adao.updateProduct(productvo);
+		
+	}
 }
 
 
