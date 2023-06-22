@@ -10,7 +10,8 @@ DROP TABLE Member CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE worker CASCADE CONSTRAINTS;
 
-
+select * from product
+select * from worker
 select * from Member
 select * from orders
 /* Create Tables */
