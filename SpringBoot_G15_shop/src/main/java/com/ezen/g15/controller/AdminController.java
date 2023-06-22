@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.g15.dto.BannerVO;
 import com.ezen.g15.dto.MemberVO;
 import com.ezen.g15.dto.OrderVO;
 import com.ezen.g15.dto.Paging;
@@ -337,7 +338,42 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/adminQnaRepSave", method=RequestMethod.POST)
+	public String adminQnaRepSave( 
+			@RequestParam("qseq") int qseq, 
+			@RequestParam("reply") String reply  ) {
+		    as.updateQna( qseq, reply);
+			return "redirect:/adminQnaView?qseq="+ qseq;
+		
+			
+	}
 	
+	
+	@RequestMapping("/adminBannerList")
+	public ModelAndView bannerList() {	
+	    ModelAndView mav = new ModelAndView();		
+	    
+		mav.addObject("bannerList", as.getBannerList() );
+		mav.setViewName("admin/banner/bannerList");		
+		
+		return mav;
+	}
+	
+	@RequestMapping("/newBannerWrite")
+	public String newBannerWrite () {
+				
+		return "admin/banner/writeBanner";
+		
+	}
+	
+	@RequestMapping(value="/bannerWrite")
+	public String bannerWrite (BannerVO bannervo) {
+		if (bannervo.getOrder_seq() == 6 ) bannervo.setUseyn("N");
+		else bannervo.setUseyn("Y");
+		as.insertBanner(bannervo);
+		return "adminBannerList";
+		
+	}
 }
 
 

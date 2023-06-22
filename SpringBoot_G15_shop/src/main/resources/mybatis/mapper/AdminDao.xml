@@ -77,4 +77,18 @@
        update  member set useyn =#{param2} where id =#{param1}      
     </update >
     
+    <update id="updateQna">
+       update  qna set reply =#{param2},rep='2' where qseq =#{param1}      
+    </update >
+    
+    
+     <select id="getBannerList" resultType="com.ezen.g15.dto.BannerVO">
+        select * from banner order by order_seq 
+     </select>
+     
+      <insert id="insertBanner" parameterType="com.ezen.g15.dto.BannerVO">
+       insert into banner(bseq, subject, order_seq, useyn,image )
+          values(banner_seq.nextval, #{subject},#{order_Seq,},#{useyn},#{image}) 
+       </insert>
+    
   </mapper>

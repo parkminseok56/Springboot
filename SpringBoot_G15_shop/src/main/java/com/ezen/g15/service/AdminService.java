@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.g15.dao.IAdminDao;
+import com.ezen.g15.dto.BannerVO;
 import com.ezen.g15.dto.MemberVO;
 import com.ezen.g15.dto.OrderVO;
 import com.ezen.g15.dto.Paging;
@@ -239,6 +240,21 @@ public class AdminService {
 
 	public void memberReinsert(String id, String useyn) {
 		adao.memberReinsert(id, useyn);
+		
+	}
+
+	public void updateQna(int qseq, String reply) {
+		    
+			adao.updateQna(qseq, reply);
+		
+	}
+
+	public List<BannerVO> getBannerList() {		
+		return adao.getBannerList();
+	}
+
+	public void insertBanner(BannerVO bannervo) {
+		adao.insertBanner( bannervo);
 		
 	}
 

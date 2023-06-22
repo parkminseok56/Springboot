@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.ezen.g15.dto.OrderVO;
 import com.ezen.g15.dto.Paging;
 import com.ezen.g15.dto.ProductVO;
+import com.ezen.g15.dto.BannerVO;
 import com.ezen.g15.dto.MemberVO;
 import com.ezen.g15.dto.QnaVO;
 
@@ -23,6 +24,10 @@ public interface IAdminDao {
 	List<QnaVO> listQna(Paging paging, String key);
 	void updateOrderResult(int odseq);
 	void memberReinsert(String id, String useyn);
+	void updateQna(int qseq, String reply);
+	List<BannerVO> getBannerList();
+	void insertBanner(BannerVO bannervo);
+	
 
 
 	
