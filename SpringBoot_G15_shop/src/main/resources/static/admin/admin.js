@@ -119,7 +119,7 @@ function go_order_save(){
 		}
 	}
 	if( count == 0) {
-		alert("삭제할 항목을 선택해 주세요.");
+		alert("항목을 선택해 주세요.");
 	}else{
 		document.frm.action = "orderUpdateResult";
 		document.frm.submit();

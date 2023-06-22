@@ -5,14 +5,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.g15.dao.IAdminDao;
+import com.ezen.g15.dto.MemberVO;
+import com.ezen.g15.dto.OrderVO;
 import com.ezen.g15.dto.Paging;
 import com.ezen.g15.dto.ProductVO;
+import com.ezen.g15.dto.QnaVO;
 
 @Service
 public class AdminService {
@@ -96,6 +98,130 @@ public class AdminService {
 		adao.updateProduct(productvo);
 		
 	}
+
+	public HashMap<String, Object> getOrderList(HttpServletRequest request) {		
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		HttpSession session = request.getSession();
+		if( request.getParameter("first")!=null ) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}		
+		int page = 1;
+		if( request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		} else if( session.getAttribute("page")!= null ) {
+			page = (int) session.getAttribute("page");
+		} else {
+			page = 1;
+			session.removeAttribute("page");
+		}
+		String key = "";
+		if( request.getParameter("key") != null ) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		} else if( session.getAttribute("key")!= null ) {
+			key = (String)session.getAttribute("key");
+		} else {
+			session.removeAttribute("key");
+			key = "";
+		} 
+		Paging paging = new Paging();
+		paging.setPage(page);		
+		int count = adao.getAllCount( "order_view", "pname", key );
+		paging.setTotalCount(count);
+		paging.paging();	
+		
+		List<OrderVO> list = adao.listOrder( paging , key );
+		result.put("orderList" , list);
+		result.put("paging", paging);
+		result.put("key", key);
+	
+		return result;
+	
+	}
+
+	public HashMap<String, Object> getMemberList(HttpServletRequest request) {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		HttpSession session = request.getSession();
+		if( request.getParameter("first")!=null ) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}		
+		int page = 1;
+		if( request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		} else if( session.getAttribute("page")!= null ) {
+			page = (int) session.getAttribute("page");
+		} else {
+			page = 1;
+			session.removeAttribute("page");
+		}
+		String key = "";
+		if( request.getParameter("key") != null ) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		} else if( session.getAttribute("key")!= null ) {
+			key = (String)session.getAttribute("key");
+		} else {
+			session.removeAttribute("key");
+			key = "";
+		} 
+		Paging paging = new Paging();
+		paging.setPage(page);		
+		int count = adao.getAllCount( "member", "name", key );
+		paging.setTotalCount(count);
+		paging.paging();	
+		
+		List<MemberVO> list = adao.listMember( paging , key );
+		result.put("memberList" , list);
+		result.put("paging", paging);
+		result.put("key", key);
+	
+		return result;
+	}	
+
+	public HashMap<String, Object> getQnaList(HttpServletRequest request) {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		HttpSession session = request.getSession();
+		if( request.getParameter("first")!=null ) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}		
+		int page = 1;
+		if( request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		} else if( session.getAttribute("page")!= null ) {
+			page = (int) session.getAttribute("page");
+		} else {
+			page = 1;
+			session.removeAttribute("page");
+		}
+		String key = "";
+		if( request.getParameter("key") != null ) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		} else if( session.getAttribute("key")!= null ) {
+			key = (String)session.getAttribute("key");
+		} else {
+			session.removeAttribute("key");
+			key = "";
+		} 
+		Paging paging = new Paging();
+		paging.setPage(page);		
+		int count = adao.getAllCount( "qna", "subject", key );
+		paging.setTotalCount(count);
+		paging.paging();	
+		
+		List<QnaVO> list = adao.listQna( paging , key );
+		result.put("qnaList" , list);
+		result.put("paging", paging);
+		result.put("key", key);
+	
+		return result;
+	
 }
 
 
@@ -111,7 +237,7 @@ public class AdminService {
 
 
 
-
+}
 
 
 

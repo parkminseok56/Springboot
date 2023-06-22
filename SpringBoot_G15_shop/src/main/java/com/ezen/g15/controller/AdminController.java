@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.g15.dto.MemberVO;
+import com.ezen.g15.dto.OrderVO;
 import com.ezen.g15.dto.Paging;
 import com.ezen.g15.dto.ProductVO;
+import com.ezen.g15.dto.QnaVO;
 import com.ezen.g15.service.AdminService;
 import com.ezen.g15.service.ProductService;
 import com.oreilly.servlet.MultipartRequest;
@@ -230,9 +233,12 @@ public class AdminController {
 			
 			if(productvo.getImage() == null || productvo.getImage().equals(""))
 				productvo.setImage( request.getParameter("oldfilename"));
+			else {
+				
 			
 			as.updateProduct ( productvo);
-			url = "redirect:/adimnProductDetail?pseq= " + productvo.getPseq();						
+			url = "redirect:/adminProductDetail?pseq= " + productvo.getPseq();	
+			}
 		}
 		
 		return url; 
@@ -242,13 +248,103 @@ public class AdminController {
 
 
 
+	@RequestMapping("/adminOrderList")
+	public ModelAndView adminOrderList( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("workId");
+		if(id==null)
+			mav.setViewName("redirect:/admin");
+		else {
+			HashMap<String, Object> result =  as.getOrderList( request );
+			mav.addObject("orderList",  (List<OrderVO>)result.get("ordertList")  );
+			mav.addObject("paging", (Paging)result.get("paging") );
+			mav.addObject("key", (String)result.get("key") );
+			mav.setViewName("admin/order/orderList");
+			// Controller 는 Service 가 작업해서 보내준 결과들을 mav 에 잘 넣어서 목적지로 이동만 합니다.
+		}
+		return mav;
+	}
 
 
+	@RequestMapping("/memberList")
+	public ModelAndView memberList( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("workId");
+		if(id==null)
+			mav.setViewName("redirect:/admin");
+		else {
+			HashMap<String, Object> result =  as.getMemberList( request );
+			mav.addObject("memberList",  (List<MemberVO>)result.get("memberList")  );
+			mav.addObject("paging", (Paging)result.get("paging") );
+			mav.addObject("key", (String)result.get("key") );
+			mav.setViewName("admin/member/memberList");
+			// Controller 는 Service 가 작업해서 보내준 결과들을 mav 에 잘 넣어서 목적지로 이동만 합니다.
+		}
+		return mav;
+	}
 
 
+	@RequestMapping("/adminQnaList")
+	public ModelAndView adminQnaList( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("workId");
+		if(id==null)
+			mav.setViewName("redirect:/admin");
+		else {
+			HashMap<String, Object> result =  as.getQnaList( request );
+			mav.addObject("qnaList",  (List<QnaVO>)result.get("qnaList")  );
+			mav.addObject("paging", (Paging)result.get("paging") );
+			mav.addObject("key", (String)result.get("key") );
+			mav.setViewName("admin/qna/qnaList");
+			// Controller 는 Service 가 작업해서 보내준 결과들을 mav 에 잘 넣어서 목적지로 이동만 합니다.
+		}
+		return mav;
+	}
 
-
-
+	@RequestMapping("orderUpdateResult")
+	public String productUpdate( 
+			@ModelAttribute("dto") @Valid ProductVO productvo,
+		     BindingResult result,	
+		     HttpServletRequest request,
+		     Model model) {
+		
+   String url ="admin/product/productUpdate";
+		
+		if( result.getFieldError("name")!=null)
+	        model.addAttribute("message", result.getFieldError("name").getDefaultMessage());	
+		else if( result.getFieldError("price2")!=null)
+	        model.addAttribute("message", result.getFieldError("price2").getDefaultMessage());
+		else if( result.getFieldError("content")!=null)
+	        model.addAttribute("message", result.getFieldError("content").getDefaultMessage());
+		else if( result.getFieldError("image")!=null)
+	        model.addAttribute("message", result.getFieldError("image").getDefaultMessage());
+		else {
+			
+			if(request.getParameter("bestyn") != null)
+				productvo.setBestyn("Y");
+			else productvo.setBestyn("N");
+			
+			if(request.getParameter("useyn") != null)
+				productvo.setUseyn("Y");
+			else productvo.setUseyn("N");
+			
+			if(productvo.getImage() == null || productvo.getImage().equals(""))
+				productvo.setImage( request.getParameter("oldfilename"));
+			else {
+				
+			
+			as.updateProduct ( productvo);
+			url = "redirect:/adminProductDetail?pseq= " + productvo.getPseq();	
+			}
+		}
+		
+		return url; 
+		
+		
+	}
 
 
 }

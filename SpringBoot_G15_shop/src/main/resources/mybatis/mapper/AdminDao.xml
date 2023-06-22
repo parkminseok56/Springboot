@@ -33,8 +33,41 @@
      <update id="updateProduct" parameterType="com.ezen.g15.dto.ProductVO">
        update  product set kind =#{kind},useyn =#{useyn},name =#{name},price1 =#{price1},
        price2 =#{price2}, price3 =#{price3},content =#{content}, image =#{image},
-       bestyn =#{bestyn}, where pseq =#{pseq}
+       bestyn =#{bestyn} where pseq =#{pseq}
     </update >
+  
+  <select id="listMember" resultType="com.ezen.g15.dto.MemberVO">
+     select * from(
+     select * from(
+         select rownum as rn, m.*from
+         ((select * from member where id like '%'||#{param2}||'%' ) m)
+     ) where rn &gt; = #{param1.startNum}
+     ) where rn &lt; = #{param1.endNum}
+     
+  </select>
+  
+  
+  <select id="listQna" resultType="com.ezen.g15.dto.QnaVO">
+     select * from(
+     select * from(
+         select rownum as rn, q.*from
+         ((select * from qna where subject like '%'||#{param2}||'%' order by qseq desc) q)
+     ) where rn &gt; = #{param1.startNum}
+     ) where rn &lt; = #{param1.endNum}
+     
+  </select>
+  
+  
+  <select id="listOrder" resultType="com.ezen.g15.dto.OrderVO">
+     select * from(
+     select * from(
+         select rownum as rn, o.*from
+         ((select * from order_view where pname like '%'||#{param2}||'%' order by oseq desc) o)
+     ) where rn &gt; = #{param1.startNum}
+     ) where rn &lt; = #{param1.endNum}
+     
+  </select>
+  
   
   
   </mapper>

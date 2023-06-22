@@ -14,6 +14,7 @@ drop sequence qna_seq;
 create sequence qna_seq start with 1;
 
 select * from order_detail
+select * from member
 ------------------------------------------------ 샘플 데이터 입력------------------------------------
 
 -- 관리자 입력

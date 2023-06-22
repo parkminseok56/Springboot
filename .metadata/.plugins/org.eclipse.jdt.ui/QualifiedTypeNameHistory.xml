@@ -29,8 +29,6 @@
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.CartVO"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
-    <fullyQualifiedTypeName name="com.ezen.g15.dto.MemberVO"/>
-    <fullyQualifiedTypeName name="com.ezen.g15.dto.OrderVO"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.QnaVO"/>
@@ -45,4 +43,6 @@
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
     <fullyQualifiedTypeName name="javax.validation.Valid"/>
+    <fullyQualifiedTypeName name="com.ezen.g15.dto.MemberVO"/>
+    <fullyQualifiedTypeName name="com.ezen.g15.dto.OrderVO"/>
 </qualifiedTypeNameHistroy>

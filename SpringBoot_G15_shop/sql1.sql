@@ -10,10 +10,12 @@ DROP TABLE Member CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE worker CASCADE CONSTRAINTS;
 
+select * from qna
 select * from product
 select * from worker
 select * from Member
 select * from orders
+select * from qna
 /* Create Tables */
 
 CREATE TABLE address
