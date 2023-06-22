@@ -73,5 +73,8 @@
        update  order_detail set result = result + 1 where odseq =#{param1}      
     </update >
   
-  
+   <update id="memberReinsert">
+       update  member set useyn =#{param2} where id =#{param1}      
+    </update >
+    
   </mapper>

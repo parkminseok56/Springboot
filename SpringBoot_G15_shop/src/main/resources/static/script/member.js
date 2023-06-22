@@ -30,7 +30,9 @@ function idok( userid){
 
 
 
-
+function reInsert(id, useyn){
+	location.href="memberReinsert?id=" + id  + "&useyn=" + useyn;
+}
 
 
 

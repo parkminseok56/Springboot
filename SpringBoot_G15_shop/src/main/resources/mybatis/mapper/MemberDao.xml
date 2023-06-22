@@ -27,5 +27,11 @@
          email=#{email},phone=#{phone} where id=#{id}        
      </update>
      
+     <update id="withDrawalMember" >
+         update member set useyn='N' where id=#{param1}
+     </update>
+     
+     
+     
   
   </mapper>

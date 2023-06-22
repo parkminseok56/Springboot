@@ -59,6 +59,8 @@ public class MemberController {
 				model.addAttribute("message", "관리자에게 문의하세요");
 			else if (!mvo.getPwd().equals(mvo.getPwd()))
 				model.addAttribute("message", "암호가 잘못되었습니다");
+			else if(mvo.getUseyn().equals("N"))
+				model.addAttribute("message", "회원 가입 및 탈퇴 이력이 있는 사용자입니다. 재가입은 관리자에게 문의하세요");
 			else if (mvo.getPwd().equals(mvo.getPwd())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
@@ -279,4 +281,20 @@ public class MemberController {
 		}
 		return url;
 	}
+	
+	
+	@RequestMapping("/withdrawal")
+	public String withdrawal( HttpServletRequest request,Model model) {
+
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+	    ms.withdrawalMember(mvo.getId());
+	    model.addAttribute("message", "회원탈퇴가 정상적으로 처리되었습니다");
+
+		return "redirect:/";
+	}
+	
+	
+	
+	
 }

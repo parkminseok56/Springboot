@@ -27,6 +27,7 @@ import com.ezen.g15.dto.ProductVO;
 import com.ezen.g15.dto.QnaVO;
 import com.ezen.g15.service.AdminService;
 import com.ezen.g15.service.ProductService;
+import com.ezen.g15.service.QnaService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -314,7 +315,27 @@ public class AdminController {
 		return "redirect:/adminOrderList"; 				
 	}
 
+	@RequestMapping("/memberReinsert")
+	public String memberReinsert( @RequestParam("id") String id,
+			@RequestParam("useyn")String useyn ) {
 	
+		if( useyn.equals("Y")) useyn="N";
+		else useyn ="Y";
+		
+		as.memberReinsert( id,useyn);			
+		return "redirect:/memberList"; 				
+	}
+
+	@Autowired
+	QnaService qs;
+	
+	@RequestMapping("/adminQnaView")
+	public ModelAndView adminQnaView(@RequestParam("qseq") int qseq) {	
+	    ModelAndView mav = new ModelAndView();		
+		mav.addObject("qnaVO", qs.getQna(qseq) );
+		mav.setViewName("admin/qna/qnaView");		
+		return mav;
+	}
 	
 	
 }

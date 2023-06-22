@@ -15,6 +15,8 @@ public interface IMemberDao {
 
 	void updateMember(MemberVO membervo);
 
+	void withDrawalMember(String id);
+
 
 
 	
