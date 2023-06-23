@@ -27,7 +27,7 @@ public class BoardController {
 		 
 		 HttpSession session = request.getSession();
 		 if(session.getAttribute("loginUser") == null)
-			 mav.setViewName("loginform");
+			 mav.setViewName("member/loginForm");
 		 else {
 			 HashMap<String, Object> paramMap = new  HashMap<String, Object>();
 			 paramMap.put("request",request);
