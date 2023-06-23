@@ -9,6 +9,8 @@ public interface IBoardDao {
 
 	void getAllCount(HashMap<String, Object> paramMap);
 
+	void selectBoard(HashMap<String, Object> paramMap);
+
 	
 
 }

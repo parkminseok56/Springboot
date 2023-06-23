@@ -42,6 +42,16 @@ public class BoardService {
 		bdao.getAllCount(paramMap);
 		// getALlCount가 실행되고 나면 "cnt" 키 값에 해당하는 벨류가 총 게시물 개수가 됨.
 		int count =(Integer)paramMap.get("cnt");
+		
+		paging.setTotalCount(count);
+		paging.paging();
+		
+		paramMap.put("startNum",paging.getStartNum());
+		paramMap.put("endNum",paging.getEndNum());
+		
+		bdao.selectBoard(paramMap); // 결과가 ref_cursor에 담김
+		
+		paramMap.put("paging", paging);
 	}
 
 
