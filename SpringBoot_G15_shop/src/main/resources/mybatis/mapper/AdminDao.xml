@@ -91,4 +91,8 @@
           values(banner_seq.nextval, #{subject},#{order_seq,},#{useyn},#{image}) 
        </insert>
     
+    
+      <update id="updateSeq" >
+         update banner set order_seq =#{param1}, useyn =#{param2} where bseq=#{param3}
+      </update >
   </mapper>

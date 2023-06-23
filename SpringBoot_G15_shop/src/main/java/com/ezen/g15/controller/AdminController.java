@@ -374,6 +374,21 @@ public class AdminController {
 		return "redirect:/adminBannerList";
 		
 	}
+	
+	@RequestMapping("/change_order")
+	public String change_order(
+			HttpServletRequest request,
+			@RequestParam("bseq") int bseq,
+			@RequestParam("changeval") int changeval ) {
+		
+		String useyn;
+		if( changeval > 5) useyn="N";
+	    else useyn="Y";
+		
+	    as.updateSeq( changeval, useyn, bseq);
+		
+		return "redirect:/adminBannerList";
+	}
 }
 
 

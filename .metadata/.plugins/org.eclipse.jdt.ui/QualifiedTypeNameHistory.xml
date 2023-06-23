@@ -21,7 +21,6 @@
     <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
     <fullyQualifiedTypeName name="com.ezen.g14.dto.ReplyVO"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotEmpty"/>
-    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
     <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
     <fullyQualifiedTypeName name="java.net.URL"/>
@@ -45,4 +44,8 @@
     <fullyQualifiedTypeName name="javax.validation.Valid"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.MemberVO"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.OrderVO"/>
+    <fullyQualifiedTypeName name="com.ezen.g15.service.QnaService"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="com.ezen.g15.dto.BannerVO"/>
+    <fullyQualifiedTypeName name="com.ezen.g15.service.AdminService"/>
 </qualifiedTypeNameHistroy>

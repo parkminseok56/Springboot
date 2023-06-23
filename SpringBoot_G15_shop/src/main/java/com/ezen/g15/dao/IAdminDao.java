@@ -27,6 +27,7 @@ public interface IAdminDao {
 	void updateQna(int qseq, String reply);
 	List<BannerVO> getBannerList();
 	void insertBanner(BannerVO bannervo);
+	void updateSeq(int changeval, String useyn, int bseq);
 	
 
 

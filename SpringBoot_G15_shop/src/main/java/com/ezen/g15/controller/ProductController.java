@@ -31,6 +31,7 @@ public class ProductController {
       model.addAttribute("newProductList", list);
       model.addAttribute("bestProductList", (List<ProductVO>)result.get("bestProductList"));
       model.addAttribute("bannerList",ps.getBannerList());
+      model.addAttribute("size",ps.getBannerList().size());
       
       return "index";
    }

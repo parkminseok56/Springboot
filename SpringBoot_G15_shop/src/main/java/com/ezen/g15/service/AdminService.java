@@ -258,6 +258,11 @@ public class AdminService {
 		
 	}
 
+	public void updateSeq(int changeval, String useyn, int bseq) {
+		adao.updateSeq(changeval,useyn, bseq);
+		
+	}
+
 
 
 
