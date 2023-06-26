@@ -21,4 +21,14 @@
 	 </select>
      <!-- 결과 레코드가 하나인든, 여럿이든 최종 담기는 형태는 ArrayList<HashMap<>> 형태가 될 예정임 -->
      <!-- 레코드 하나가 <HashMap<String,Object>>에 담긴다는 뜻임.  -->
+     
+      <insert id="joinKakao" statementType="CALLABLE" parameterType="java.util.HashMap">
+         {
+	          CALL joinKakao(
+	          #{userid },  #{name },  #{email },  #{provider }
+	          )
+	      } 
+     </insert>
+     
+     
 </mapper>

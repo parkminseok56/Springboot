@@ -18,6 +18,11 @@ public class MemberService {
 		
 	}
 
+	public void joinKakao(HashMap<String, Object> paramMap) {
+		mdao.joinKakao(paramMap);
+		
+	}
+
 	
 }
 
