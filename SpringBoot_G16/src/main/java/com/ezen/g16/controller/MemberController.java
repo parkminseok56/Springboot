@@ -321,7 +321,7 @@ public class MemberController {
 			if(membervo.getProvider()!=null) paramMap.put("pwd","");
 			else paramMap.put("pwd", membervo.getPwd());
 			
-			paramMap.put("pwd", membervo.getPwd());
+			
 			paramMap.put("name", membervo.getName());
 			paramMap.put("email", membervo.getEmail());
 			paramMap.put("phone", membervo.getPhone());
@@ -331,6 +331,12 @@ public class MemberController {
 			
 			ms.updateMember(paramMap);
 			
+			 paramMap.put("ref_cursor", null);
+			 ms.getMember(paramMap);		 
+			 ArrayList<HashMap<String,Object>> list			
+			     =(ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
+			 HashMap<String, Object> mvo  = list.get(0);
+					 
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", paramMap);
 			

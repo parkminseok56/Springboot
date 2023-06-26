@@ -47,6 +47,7 @@
 		<td width="100"><fmt:formatDate value="${now}"	pattern="MM/dd HH:mm" /></td>
 		<td width="670"><input type="text" name="content" size="85"></td>
 		<td width="100"><input type="submit" value="답글작성" onclick="return reply_check();"></td></tr>
+		
 	<c:forEach var="reply" items="${replyList}">
 		<tr><td align="center">${reply.UERID}</td>
 			<td align="center"><fmt:formatDate value="${reply.WRITEDATE}"	pattern="MM/dd HH:mm" /></td>

@@ -61,6 +61,22 @@ public class BoardService {
 		
 	}
 
+	public void insertReply(HashMap<String, Object> paramMap) {
+		bdao.insertReply(paramMap);
+		
+		
+	}
+
+	public void boardViewWithoutCount(HashMap<String, Object> paramMap) {
+		bdao.getBoard(paramMap);
+		
+	}
+
+	public void deleteReply(HashMap<String, Object> paramMap) {
+		bdao.deleteReply(paramMap);
+		
+	}
+
 
 	
 }

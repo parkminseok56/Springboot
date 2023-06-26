@@ -95,7 +95,7 @@ END;
 CREATE OR REPLACE PROCEDURE insertMember(
        p_userid member. userid%type,  
        p_name member. name%type,
-      p_pwd member. pwd%type,
+       p_pwd member. pwd%type,
        p_email member.email%type,
        p_phone member.phone%type
 )
@@ -157,3 +157,36 @@ begin
 end;
 
 
+
+
+CREATE OR REPLACE PROCEDURE insertReply(
+       p_userid In reply. userid%type,  
+      p_boardnum In reply. boardnum%type,  
+      p_content In reply. content%type
+)
+
+IS
+
+BEGIN
+       INSERT INTO Reply ( replynum, boardnum, userid,content)
+       VALUES(reply_seq.nextVal, p_boardnum, p_userid, p_content);
+       COMMIT;
+
+END;
+
+
+
+
+CREATE OR REPLACE PROCEDURE deleteReply(
+      p_replynum in reply.replynum%type  
+   
+)
+
+IS
+
+BEGIN
+      delete  from  reply where  replynum=p_replynum;
+    
+       COMMIT;
+
+END;

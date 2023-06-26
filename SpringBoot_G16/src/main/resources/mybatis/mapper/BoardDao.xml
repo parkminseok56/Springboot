@@ -50,6 +50,29 @@
 	   
 	   }
 	</update >
+	
+	
+	
+	<insert id="insertReply"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	   {
+	        CALL insertReply(
+	           #{boardnum}, #{userid}, #{content}
+	          
+	           )
+	   
+	   }
+	</insert >
+	
+	
+	<delete id="deleteReply"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	   {
+	        CALL deleteReply(
+	           #{replynum}
+	          
+	           )
+	   
+	   }
+	</delete >
 </mapper>
 
 

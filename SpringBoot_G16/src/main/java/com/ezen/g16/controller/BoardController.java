@@ -48,8 +48,8 @@ public class BoardController {
 	
 			
 	 @RequestMapping("/boardView")
-	 public ModelAndView boardView(@RequestParam("num") int num,
-			 HttpServletRequest request) {
+	 public ModelAndView boardView(@RequestParam("num") int num
+		 ) {
 		 ModelAndView mav = new ModelAndView();
 		 
 		 HashMap<String, Object> paramMap = new  HashMap<String, Object>();
@@ -57,7 +57,7 @@ public class BoardController {
 		 paramMap.put("ref_cursor1",null);
 		 paramMap.put("ref_cursor2",null);
 		 
-		 bs.getBoard( paramMap);
+		 bs.boardViewWithoutCount( paramMap);
 		 
 		 ArrayList  <HashMap<String, Object> > list1
 		 =   (ArrayList  <HashMap<String, Object> >)  paramMap.get("ref_cursor1");
@@ -70,6 +70,82 @@ public class BoardController {
 		 mav.setViewName("board/boarView");
 		 return mav;
 		 }
+	 
+	 @RequestMapping("/addReply")
+	 public String addReply(
+			 @RequestParam("boardnum") int boardnum,
+			 @RequestParam("userid") String userid,
+			 @RequestParam("content") String content,
+			 HttpServletRequest request) {
+		 
+		 HashMap<String, Object> paramMap = new  HashMap<String, Object>();
+		 paramMap.put("boardnum",boardnum);
+		 paramMap.put("userid",userid);
+		 paramMap.put("content",content);
+	 
+		 bs.insertReply(paramMap);
+		 
+		 return "redirect:/boardViewWithoutCount?num=" + boardnum;
+	 }
+	 
+	 
+	 
+	 
+	 
+	 @RequestMapping("/boardViewWithoutCount")
+	 public ModelAndView boardViewWithoutCount(@RequestParam("num") int num,
+		 HttpServletRequest request) {
+		 ModelAndView mav = new ModelAndView();
+		 
+		 HashMap<String, Object> paramMap = new  HashMap<String, Object>();
+		 paramMap.put("num",num);
+		 paramMap.put("ref_cursor1",null);
+		 paramMap.put("ref_cursor2",null);
+		 
+		 bs.boardViewWithoutCount( paramMap);
+		 
+		 ArrayList  <HashMap<String, Object> > list1
+		 =   (ArrayList  <HashMap<String, Object> >)  paramMap.get("ref_cursor1");
+		 ArrayList  <HashMap<String, Object> > list2
+		 =   (ArrayList  <HashMap<String, Object> >)  paramMap.get("ref_cursor2");
+		 
+		 mav.addObject("board", list1.get(0));
+		 mav.addObject("replyList",list2);
+		 
+		 mav.setViewName("board/boarView");
+		 return mav;
+		 }
+	 
+	 
+	 
+	 
+	 
+	 @RequestMapping("/deleteReply")
+	 public String reply_delete(
+			 @RequestParam("num") int replynum,
+			 @RequestParam("boardnum") int boardnum,		
+			 HttpServletRequest request) {
+		 
+		 HashMap<String, Object> paramMap = new  HashMap<String, Object>();
+		 paramMap.put("replynum",replynum);			 
+		 bs.deleteReply(paramMap);
+		 
+		 return "redirect:/boardViewWithoutCount?num=" + boardnum;
+	 }
+	 
+	 
+	 
+	 @RequestMapping("/boardWriteForm")
+     public String write_form(HttpServletRequest request) {
+             
+             String url = "board/boardWriteForm";
+             HttpSession session = request.getSession();
+				if (session.getAttribute("loginUser") == null)
+				     url="member/loginForm";                
+             
+             return url;
+     }
+	 
 }
 
 
