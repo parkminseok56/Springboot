@@ -77,6 +77,19 @@ public class BoardService {
 		
 	}
 
+	public void insertBoard(HashMap<String, Object> paramMap) {
+		bdao.insertBoard(paramMap);
+		
+	}
+
+
+	
+
+	public void getBoardWithoutCount(HashMap<String, Object> paramMap) {
+		bdaogetBoard(paramMap);
+		
+	}
+
 
 	
 }

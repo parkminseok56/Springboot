@@ -190,3 +190,24 @@ BEGIN
        COMMIT;
 
 END;
+
+CREATE OR REPLACE PROCEDURE insertBoard(
+       p_userid In Board.USERID%type,  
+       p_pass In Board.PASS%type,  
+       p_emai In Board.EMAIL%type,  
+       p_title In Board.TITLE%type,  
+       p_content In Board.CONTENT%type,  
+       p_imgfilename In Board.IMGFILENAME%type  
+)
+
+IS
+
+BEGIN
+       INSERT INTO board ( num,  pass,userid,email,title,content,imgfilename)
+       VALUES(board_seq.nextVal, p_pass, p_userid, p_email, p_title, p_content,p_imgfilename);
+       COMMIT;
+
+END;
+
+
+

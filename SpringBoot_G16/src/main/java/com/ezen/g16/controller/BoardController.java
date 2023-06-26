@@ -9,20 +9,23 @@ import java.util.HashMap;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.g16.dto.BoardVO;
+import com.ezen.g16.dto.MemberVO;
 import com.ezen.g16.dto.Paging;
 import com.ezen.g16.service.BoardService;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class BoardController {
@@ -173,4 +176,91 @@ public class BoardController {
 
 	}
 
+	@RequestMapping( value="/boardWrite", method=RequestMethod.POST)
+    public String board_Write(        
+                                            @ModelAttribute("dto") @Valid BoardVO boardvo,
+                                            BindingResult result,
+                                            Model model, HttpServletRequest request ) {
+            
+            String url = "board/boardWriteForm";
+            if( result.getFieldError("pass") != null ) 
+                    model.addAttribute("message", result.getFieldError("pass").getDefaultMessage() );
+            else if( result.getFieldError("title")!=null)
+                    model.addAttribute("message", result.getFieldError("title").getDefaultMessage() );
+            else if( result.getFieldError("content")!=null)
+                    model.addAttribute("message", result.getFieldError("content").getDefaultMessage() );
+            else {
+
+                    HashMap<String, Object> paramMap = new HashMap<String, Object>();
+                    paramMap.put("userid", boardvo.getUserid());
+                    paramMap.put("pass", boardvo.getPass());
+                    paramMap.put("email", boardvo.getEmail());
+                    paramMap.put("content", boardvo.getContent());
+                    paramMap.put("title", boardvo.getTitle());
+                    if(boardvo.getImgfilename() == null) paramMap.put("imgfilename", "");
+                    else paramMap.put("imgfilename", boardvo.getImgfilename());
+                    
+                    bs.insertBoard(paramMap);
+                    url = "redirect:/main";
+            }
+            return url;
+    }
+	
+	@RequestMapping("/boardEditForm")
+    public String board_edit_form(Model model, HttpServletRequest request) {
+            String num = request.getParameter("num");
+            model.addAttribute("num", num);
+            return "board/boardCheckPassForm";
+    }
+	
+	@RequestMapping("/boardEdit")
+    public String board_edit(
+    		@RequestParam("num") int num,
+    		@RequestParam("pass") String pass,
+    		Model model, HttpServletRequest request) {
+          
+		   HashMap<String, Object> paramMap = new HashMap<String, Object>();
+           paramMap.put("num", num);
+           paramMap.put("ref_cursor1", null);
+           paramMap.put("ref_cursor2", null); // getBoardWithoutCount 매개변수에 전달인수 개수를 맞춤
+		  
+           bs.getBoardWithoutCount(paramMap);
+           
+           ArrayList<HashMap<String, Object>>  list
+        		   =   (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+           
+           HashMap<String, Object> bvo = list.get(0);
+           
+           model.addAttribute("num",num);
+           if(pass.equals(bvo.get("PASS")))
+        	   return "board/boardCheckPass";
+           else {
+        	   model.addAttribute("message", "비밀번호가 맞지 않습니다, 확인해즈세여");
+        	   return "board/boardCheckPassForm";
+           }
+           
+    }
+	
+	@RequestMapping("/boardUpdateForm")
+	public String board_update_Form(
+			@RequestParam("num") int num,
+    		Model model, HttpServletRequest request) {
+		
+	
+
+
+		HashMap<String, Object> loginUser = new HashMap<String, Object>(); // 서
+																											// loginUser
+							
+		paramMap.put("num",num);
+		paramMap.put("ref_cursor1",null);
+		paramMap.put("ref_cursor2",null);
+		bs.getBoardWithoutCount(paramMap);
+		ArrayList
+
+		mav.addObject("dto", dto);
+		mav.setViewName("member/memberEditForm");
+		return mav;
+	}
+	
 }

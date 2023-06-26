@@ -73,6 +73,20 @@
 	   
 	   }
 	</delete >
+	
+	
+	<insert id=" insertBoard"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	   {
+	        CALL 	insertBoard(
+	           #userid}, #{pass}, #{email},#{title},#{content},#{imgfilename}
+	          
+	           )
+	   
+	   }
+	</insert >
+
+	
+	
 </mapper>
 
 
