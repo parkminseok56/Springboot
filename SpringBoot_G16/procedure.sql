@@ -92,6 +92,22 @@ BEGIN
 END;
 
 
+CREATE OR REPLACE PROCEDURE insertMember(
+       p_userid member. userid%type,
+       p_name member. name%type,
+       p_email member.email%type,
+       p_phone member.phone%type
+)
+
+IS
+
+BEGIN
+       INSERT INTO member ( userid,name,email,phone)
+       VALUES(p_userid, p_name, p_email, p_phone);
+       COMMIT;
+
+END;
+
 
 
 

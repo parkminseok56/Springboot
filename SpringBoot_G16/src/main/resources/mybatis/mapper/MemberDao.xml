@@ -30,5 +30,13 @@
 	      } 
      </insert>
      
+       <insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+         {
+	          CALL insertKakao(
+	          #{userid },  #{name },  #{email },  #{phone }
+	          )
+	      } 
+     </insert>
+     
      
 </mapper>
