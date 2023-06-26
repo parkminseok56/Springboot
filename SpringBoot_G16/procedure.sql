@@ -121,13 +121,39 @@ CREATE OR REPLACE PROCEDURE updatetMember(
 IS
 
 BEGIN
-      UPDATE member SET  pwd=p_pwd, name=p_name, email=p_email, phone=p_phone
-      WHERE userid=p_userid;
+       UPDATE member SET  pwd=p_pwd, name=p_name, email=p_email, phone=p_phone
+       WHERE userid=p_userid;
        COMMIT;
 
 END;
 
 
 
+
+
+
+
+create or replace procedure plusOneReadCount(
+    p_num IN board.num%type
+)
+is
+begin
+    update board set readcount = readcount + 1 where num = p_num;
+    commit;
+end;
+
+
+create or replace procedure getBoard(
+    p_num board.num%type,
+    p_cur1 out sys_refcursor,
+    p_cur2 out sys_refcursor
+)
+is
+begin
+    open p_cur1 for
+        select * from board where num=p_num;
+    open p_cur2 for
+        select * from reply where boardnum = p_num order by replynum desc;
+end;
 
 

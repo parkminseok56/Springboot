@@ -29,6 +29,27 @@
 	   }
 	</select>
 	
+	<select id="getBoard"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	   {
+	        CALL getBoard(
+	           #{num},
+	           #{ref_cursor1, mode=OUT,jdbcType=CURSOR, javaType=ResultSet,resultMap=boardMap},
+	           #{ref_cursor2, mode=OUT,jdbcType=CURSOR, javaType=ResultSet,resultMap=replyMap}
+	           )
+	   
+	   }
+	</select>
+	
+	
+	<update id="plusOneReadCount"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	   {
+	        CALL plusOneReadCount(
+	           #{num}
+	          
+	           )
+	   
+	   }
+	</update >
 </mapper>
 
 

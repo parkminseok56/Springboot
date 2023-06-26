@@ -291,14 +291,14 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
+	@RequestMapping(value = "memberEdit", method = RequestMethod.POST)
 	public String memberEdit(
 			@ModelAttribute("dto") 
 			@Valid MemberVO membervo, 
 			BindingResult result,
-			@RequestParam("re_id") String reid, 
-			@RequestParam("pwd_check") String pwchk, 
-			Model model,HttpServletRequest request) {
+			@RequestParam(value="pwd_check", required=false) String pwchk, 
+			Model model,
+			HttpServletRequest request) {
 
 		String url = "member/memberEditForm";
 		

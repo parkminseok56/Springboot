@@ -54,6 +54,13 @@ public class BoardService {
 		paramMap.put("paging", paging);
 	}
 
+	public void getBoard(HashMap<String, Object> paramMap) {
+		bdao.plusOneReadCount(paramMap);
+		bdao.getBoard(paramMap);
+		
+		
+	}
+
 
 	
 }
