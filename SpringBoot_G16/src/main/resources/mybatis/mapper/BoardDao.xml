@@ -77,14 +77,34 @@
 	
 	<insert id=" insertBoard"  statementType="CALLABLE" parameterType="java.util.HashMap">
 	   {
-	        CALL 	insertBoard(
-	           #userid}, #{pass}, #{email},#{title},#{content},#{imgfilename}
+	        CALL insertBoard(
+	           #{userid}, #{pass}, #{email},#{title},#{content},#{imgfilename}
 	          
 	           )
 	   
 	   }
 	</insert >
 
+	<update id=" updateBoard"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	   {
+	        CALL updateBoard(
+	           #{userid}, #{pass}, #{email},#{title},#{content},#{imgfilename}
+	          
+	           )
+	   
+	   }
+	</update >
+	
+	
+	<delete id=" deleteBoard"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	   {
+	        CALL deleteBoard(
+	           #{num}
+	          
+	           )
+	   
+	   }
+	</delete >
 	
 	
 </mapper>

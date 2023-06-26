@@ -4,11 +4,13 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.g16.dao.IBoardDao;
+import com.ezen.g16.dto.BoardVO;
 import com.ezen.g16.dto.Paging;
 
 @Service
@@ -86,7 +88,17 @@ public class BoardService {
 	
 
 	public void getBoardWithoutCount(HashMap<String, Object> paramMap) {
-		bdaogetBoard(paramMap);
+		bdao.getBoard(paramMap);
+		
+	}
+
+	public void updateBoard(HashMap<String, Object> paramMap) {
+		bdao.updateBoard(paramMap);
+		
+	}
+
+	public void removeBoard(HashMap<String, Object> paramMap) {
+		bdao.removeBoard(paramMap);
 		
 	}
 

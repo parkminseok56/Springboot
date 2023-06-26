@@ -199,15 +199,32 @@ CREATE OR REPLACE PROCEDURE insertBoard(
        p_content In Board.CONTENT%type,  
        p_imgfilename In Board.IMGFILENAME%type  
 )
-
 IS
-
 BEGIN
        INSERT INTO board ( num,  pass,userid,email,title,content,imgfilename)
-       VALUES(board_seq.nextVal, p_pass, p_userid, p_email, p_title, p_content,p_imgfilename);
+       VALUES(board_seq.nextVal,  p_pass,  p_userid,  p_email,  p_title,  p_content, p_imgfilename);
        COMMIT;
-
 END;
 
 
-
+CREATE OR REPLACE PROCEDURE updateBoard(
+       p_num IN BOARD.num%TYPE,
+       p_userid IN BOARD.userid%TYPE,
+       p_pass IN BOARD.pass%TYPE,
+       p_email IN BOARD.email%TYPE,
+       p_title IN BOARD.title%TYPE,
+       p_content IN BOARD.content%TYPE,
+       p_imgfilename IN BOARD.imgfilename%TYPE
+)
+IS
+BEGIN
+       UPDATE board
+       SET pass = p_pass,
+           title = p_title,
+           content = p_content,
+           imgfilename = p_imgfilename,
+           email = p_email,
+           userid = p_userid
+       WHERE num = p_num;
+       COMMIT;
+END;
