@@ -30,6 +30,11 @@ public class MemberService {
 		mdao.insertMember(paramMap);		
 	}
 
+	public void updateMember(HashMap<String, Object> paramMap) {
+		mdao.updateMember(paramMap);
+		
+	}
+
 	
 }
 

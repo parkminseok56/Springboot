@@ -32,8 +32,16 @@
      
        <insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap">
          {
-	          CALL insertKakao(
-	          #{userid },  #{name },  #{email },  #{phone }
+	          CALL insertMember(
+	          #{userid }, #{name },#{pwd },   #{email },  #{phone }
+	          )
+	      } 
+     </insert>
+     
+      <insert id="updateMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+         {
+	          CALL updateMember(
+	          #{userid }, #{pwd }, #{name },  #{email },  #{phone }
 	          )
 	      } 
      </insert>

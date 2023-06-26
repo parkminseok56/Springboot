@@ -43,12 +43,12 @@ public class MemberController {
 
 	@RequestMapping("/")
 	public String root(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("loginUser") !=null )
-		return "redirect:/main";
-		else 
+
+		if (session.getAttribute("loginUser") != null)
+			return "redirect:/main";
+		else
 			return "member/loginForm";
 	}
 
@@ -115,28 +115,23 @@ public class MemberController {
 
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		// 현재 요청의 세션 객체를 가져옴. getSession() 메소드는 요청과 관련된 세션을 반환함.
-		
-		session.invalidate(); 
-		//session.invalidate(): 세션을 무효화하여 사용자의 세션 상태를 종료함. 이로 인해 세션에 저장된 데이터는 모두 삭제됨.
+
+		session.invalidate();
+		// session.invalidate(): 세션을 무효화하여 사용자의 세션 상태를 종료함. 이로 인해 세션에 저장된 데이터는 모두 삭제됨.
 		return "redirect:/";
 	}
-	
-	
+
 	@RequestMapping("/kakaostart")
 	public @ResponseBody String kakaostart() {
-		String a = "<script type='text/javascript'>"
-	            + "location.href='https://kauth.kakao.com/oauth/authorize?"
-				+ "client_id=0a12e9117e1fe5a43f4dec0602b709c1&" 
-	            + "redirect_uri=http://localhost:8070/kakaoLogin&"
-				+ "response_type=code';" 
-	            + "</script>";
+		String a = "<script type='text/javascript'>" + "location.href='https://kauth.kakao.com/oauth/authorize?"
+				+ "client_id=0a12e9117e1fe5a43f4dec0602b709c1&" + "redirect_uri=http://localhost:8070/kakaoLogin&"
+				+ "response_type=code';" + "</script>";
 		return a;
 	}
 
-	
 	@RequestMapping("/kakaoLogin")
 	public String login(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
 
@@ -165,11 +160,10 @@ public class MemberController {
 			sb.append(input);
 			System.out.println(input); // 수신된 토큰을 콘솔에 출력합니다
 		}
-		
+
 		Gson gson = new Gson();
 		OAuthToken oAuthToken = gson.fromJson(sb.toString(), OAuthToken.class);
 
-		
 		String endpoint2 = "https://kapi.kakao.com/v2/user/me";
 		URL url2 = new URL(endpoint2);
 		// import java.net.HttpURLConnection;
@@ -183,135 +177,166 @@ public class MemberController {
 			sb2.append(input2);
 			System.out.println(input2);
 		}
-		
+
 		// 전달받은 회원정보를 kakaoProfile 객체에 담습니다.( sb2 -> kakaoProfile )
 		Gson gson2 = new Gson();
 		KakaoProfile kakaoProfile = gson2.fromJson(sb2.toString(), KakaoProfile.class);
 		KakaoAccount ac = kakaoProfile.getAccount();
 		Profile pf = ac.getProfile();
 
-		
-	
-	
-         
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("userid", kakaoProfile.getId());
-		paramMap.put("ref_cursor", null);				
+		paramMap.put("ref_cursor", null);
 		ms.getMember(paramMap);
 		// 해시맵에 담겨온 ref_cursor의 형태는 해시맵들의 리스트이고, 해시맵 하나는 검색결과의 레코드 하나에 해당함.
-		ArrayList < HashMap<String, Object> > list
-		= (ArrayList < HashMap<String, Object> >) paramMap.get("ref_cursor");
-		
-		
-		if (list == null || list.size()==0) {						
-			paramMap.put("userid",kakaoProfile.getId());
-			paramMap.put("email",ac.getEmail());
-			paramMap.put("name",pf.getNickname());
-			paramMap.put("provider","kakao");			
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+
+		if (list == null || list.size() == 0) {
+			paramMap.put("userid", kakaoProfile.getId());
+			paramMap.put("email", ac.getEmail());
+			paramMap.put("name", pf.getNickname());
+			paramMap.put("provider", "kakao");
 			ms.joinKakao(paramMap);
-			
-			paramMap.put("ref_cursor",null);			
-			ms.getMember(paramMap);			 
-			list = (ArrayList < HashMap<String, Object> >) paramMap.get("ref_cursor");
+
+			paramMap.put("ref_cursor", null);
+			ms.getMember(paramMap);
+			list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 		}
-		
+
 		HashMap<String, Object> mvo = list.get(0);
-		
+
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", mvo);
 
 		return "redirect:/main";
 	}
-	
+
 	@RequestMapping("/memberJoinForm")
 	public String join_form() {
 		return "member/memberJoinForm";
 	}
-	
-	
+
 	@RequestMapping("/idcheck")
 	public ModelAndView id_check(@RequestParam("userid") String userid) {
-	    ModelAndView mav = new ModelAndView();
-		
-	    HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("userid",userid);
+		ModelAndView mav = new ModelAndView();
+
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userid", userid);
 		paramMap.put("ref_cursor", null);
 		ms.getMember(paramMap);
-		ArrayList < HashMap<String, Object> > list
-		    = (ArrayList < HashMap<String, Object> >) paramMap.get("ref_cursor");
-		if( list==null||list.size()==0)
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		if (list == null || list.size() == 0)
 			mav.addObject("result", -1);
-		else 
-			mav.addObject("result",1);
-		mav.addObject("userid",userid);
+		else
+			mav.addObject("result", 1);
+		mav.addObject("userid", userid);
 		mav.setViewName("member/idcheck");
-		
+
 		return mav;
 	}
-	
-	
-	
-	@RequestMapping(value = "memberJoin", method=RequestMethod.POST)
-    public ModelAndView memberJoin(
-                                    @ModelAttribute("dto") @Valid MemberVO membervo,BindingResult result, 
-                                    @RequestParam("re_id") String reid, 
-                                    @RequestParam("pwd_check") String pwchk, 
-                                    Model model) {
-            
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("member/memberJoinForm");
-        mav.addObject("re_id",reid);
-        
-            
-            if( result.getFieldError("userid")!=null) 
-                    mav.addObject("message","아이디 입력하세요");
-            else if( result.getFieldError("pwd")!=null) 
-                    mav.addObject("message","비밀번호 입력하세요");
-            else if( !reid.equals(membervo.getUserid()) ) 
-                    mav.addObject("message", "id 중복체크를 하지 않았습니다");
-            else if( !pwchk.equals( membervo.getPwd() ) ) 
-                    mav.addObject("message", "비밀번호 확인이 일치하지 않습니다");
-            else {
-            HashMap<String, Object> paramMap = new HashMap<String, Object>();
-            paramMap.put("userid", membervo.getUserid());
-            paramMap.put("pwd", membervo.getPwd());
-            paramMap.put("name", membervo.getName());
-            paramMap.put("email", membervo.getEmail());
-            paramMap.put("phone", membervo.getPhone());
-                    
-                    ms.insertMember(paramMap);
-                    
-                    
-                    
-                    mav.addObject("message", "회원가입이 완료되었습니다. 로그인 하세요");
-                    mav.setViewName("member/loginForm");
-            }
-            return mav;
-    }
-	
+
+	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
+	public ModelAndView memberJoin(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
+			@RequestParam("re_id") String reid, @RequestParam("pwd_check") String pwchk, Model model) {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/memberJoinForm");
+		mav.addObject("re_id", reid);
+
+		if (result.getFieldError("userid") != null)
+			mav.addObject("message", "아이디 입력하세요");
+		else if (result.getFieldError("pwd") != null)
+			mav.addObject("message", "비밀번호 입력하세요");
+		else if (!reid.equals(membervo.getUserid()))
+			mav.addObject("message", "id 중복체크를 하지 않았습니다");
+		else if (!pwchk.equals(membervo.getPwd()))
+			mav.addObject("message", "비밀번호 확인이 일치하지 않습니다");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userid", membervo.getUserid());
+			paramMap.put("pwd", membervo.getPwd());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("email", membervo.getEmail());
+			paramMap.put("phone", membervo.getPhone());
+
+			ms.insertMember(paramMap);
+
+			mav.addObject("message", "회원가입이 완료되었습니다. 로그인 하세요");
+			mav.setViewName("member/loginForm");
+		}
+		return mav;
+	}
+
 	@RequestMapping("/memberEditForm")
-	public  ModelAndView memEditForm(HttpServletRequest request) {
-        
+	public ModelAndView memEditForm(HttpServletRequest request) {
+
 		// 세션에서 loginUser 속 데이터들을 MemberVO 형태의 dto에 옮겨담고, 수정페이지로 이동함,
 		ModelAndView mav = new ModelAndView();
-		
-		HttpSession session = request.getSession();
-		 HashMap<String, Object> loginUser 
-		  =  (HashMap<String, Object>)session.getAttribute("loginUser"); // 세션에서 loginUser 추출
-		   
-		MemberVO dto =  new MemberVO();
-		dto.setUserid((String)loginUser.get("USERID"));
-		dto.setPwd((String)loginUser.get("PWD"));
-		dto.setName((String)loginUser.get("NAME"));
-		dto.setEmail((String)loginUser.get("EMAIL"));
-		dto.setPhone((String)loginUser.get("PHONE"));
 
-		mav.addObject("dto",dto);
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser"); // 세션에서
+																											// loginUser
+																											// 추출
+
+		MemberVO dto = new MemberVO();
+		dto.setUserid((String) loginUser.get("USERID"));
+		dto.setPwd((String) loginUser.get("PWD"));
+		dto.setName((String) loginUser.get("NAME"));
+		dto.setEmail((String) loginUser.get("EMAIL"));
+		dto.setPhone((String) loginUser.get("PHONE"));
+		dto.setProvider((String) loginUser.get("PROVIDER"));
+
+		mav.addObject("dto", dto);
 		mav.setViewName("member/memberEditForm");
 		return mav;
 	}
-	
-	
-	
+
+	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
+	public String memberEdit(
+			@ModelAttribute("dto") 
+			@Valid MemberVO membervo, 
+			BindingResult result,
+			@RequestParam("re_id") String reid, 
+			@RequestParam("pwd_check") String pwchk, 
+			Model model,HttpServletRequest request) {
+
+		String url = "member/memberEditForm";
+		
+		if (membervo.getProvider()==null && result.getFieldError("pwd") != null)
+			model.addAttribute("message", "비밀번호를 입력하세요");		
+		else if (result.getFieldError("name") != null)
+			model.addAttribute("message", "이름을 입력하세요");
+		
+		else if (membervo.getProvider()==null && pwchk!=null && !pwchk.equals(membervo.getPwd()))
+			model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다");
+		
+		else if (result.getFieldError("email") != null) 
+			model.addAttribute("message", "이메일을 입력하세요");
+		else if (result.getFieldError("phone") != null) 
+			model.addAttribute("message", "전화번호를 입력하세요");								
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userid", membervo.getUserid());
+			
+			if(membervo.getProvider()!=null) paramMap.put("pwd","");
+			else paramMap.put("pwd", membervo.getPwd());
+			
+			paramMap.put("pwd", membervo.getPwd());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("email", membervo.getEmail());
+			paramMap.put("phone", membervo.getPhone());
+            
+			if(membervo.getProvider()!=null) paramMap.put("provider",membervo.getProvider());
+			else paramMap.put("provider", null);
+			
+			ms.updateMember(paramMap);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", paramMap);
+			
+		    url="redirect:/main";
+		}
+		return url;
+	}
 
 }

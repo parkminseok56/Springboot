@@ -8496,3 +8496,487 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.g
 	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
 	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
 	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-06-26 11:44:00.065
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:45:54.198
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:46:03.089
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:46:48.602
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-06-26 11:49:18.614
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:52:12.071
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:52:19.777
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:52:41.475
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:52:51.638
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:53:07.449
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:53:23.318
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 11:53:26.869
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:06:14.202
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:06:26.555
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:06:38.008
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:07:04.586
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:09:46.486
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:09:58.339
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:10:11.898
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:10:23.832
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:10:27.221
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:15:22.625
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:15:29.496
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:15:42.696
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2023-06-26 12:15:48.659
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.ui.IWorkbenchWindow.getActivePage()" because the return value of "org.eclipse.ui.IWorkbench.getActiveWorkbenchWindow()" is null
+	at org.eclipse.ajdt.internal.ui.editor.quickfix.QuickFixProcessor.getCorrections(QuickFixProcessor.java:233)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)

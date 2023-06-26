@@ -93,7 +93,26 @@ END;
 
 
 CREATE OR REPLACE PROCEDURE insertMember(
+       p_userid member. userid%type,  
+       p_name member. name%type,
+      p_pwd member. pwd%type,
+       p_email member.email%type,
+       p_phone member.phone%type
+)
+
+IS
+
+BEGIN
+       INSERT INTO member ( userid,name,pwd,email,phone)
+       VALUES(p_userid, p_name,p_pwd, p_email, p_phone);
+       COMMIT;
+
+END;
+
+
+CREATE OR REPLACE PROCEDURE updatetMember(
        p_userid member. userid%type,
+       p_pwd member. pwd%type,
        p_name member. name%type,
        p_email member.email%type,
        p_phone member.phone%type
@@ -102,13 +121,11 @@ CREATE OR REPLACE PROCEDURE insertMember(
 IS
 
 BEGIN
-       INSERT INTO member ( userid,name,email,phone)
-       VALUES(p_userid, p_name, p_email, p_phone);
+      UPDATE member SET  pwd=p_pwd, name=p_name, email=p_email, phone=p_phone
+      WHERE userid=p_userid;
        COMMIT;
 
 END;
-
-
 
 
 
