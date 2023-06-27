@@ -14,7 +14,7 @@
 <div id="wrap" align="center">
 	<h1>게시글 상세보기</h1>
 	<table>
-		<tr><th>작성자</th><td>${board.UERID}</td><th>이메일</th><td>${board.EMAIL}</td></tr>
+		<tr><th>작성자</th><td>${board.USERID}</td><th>이메일</th><td>${board.EMAIL}</td></tr>
 		<tr><th>작성일</th><td><fmt:formatDate value="${board.WRITEDATE}"/></td>
 			<th>조회수</th><td>${board.READCOUNT }</td></tr>
 		<tr><th>제목</th><td colspan="3">${board.TITLE}</td></tr>
@@ -43,17 +43,18 @@
 <table>
 	<tr><th>작성자</th><th>작성일시</th><th>내용</th><th>&nbsp;</th></tr>
 	<tr align="center">
-		<td width="100">${loginUser.USERID}<input type="hidden" name="userid" value="${loginUser.USERID}"></td>
+		<td width="100">${loginUser.USERID}
+				<input type="hidden" name="userid" value="${loginUser.USERID}"></td>
 		<td width="100"><fmt:formatDate value="${now}"	pattern="MM/dd HH:mm" /></td>
 		<td width="670"><input type="text" name="content" size="85"></td>
 		<td width="100"><input type="submit" value="답글작성" onclick="return reply_check();"></td></tr>
 		
 	<c:forEach var="reply" items="${replyList}">
-		<tr><td align="center">${reply.UERID}</td>
+		<tr><td align="center">${reply.USERID}</td>
 			<td align="center"><fmt:formatDate value="${reply.WRITEDATE}"	pattern="MM/dd HH:mm" /></td>
 			<td>${reply.CONTENT}</td>
 			<td align="center">
-				<c:if test="${reply.userid==loginUser.USERID}">
+				<c:if test="${reply.USERID==loginUser.USERID}">
 					<input type="button" value="삭제" 
 				onclick="location.href='deleteReply?num=${reply.REPLYNUM}&boardnum=${reply.BOARDNUM}'">
 				</c:if>&nbsp;</td></tr>

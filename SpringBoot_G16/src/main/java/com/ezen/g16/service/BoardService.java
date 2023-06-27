@@ -4,19 +4,17 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.g16.dao.IBoardDao;
-import com.ezen.g16.dto.BoardVO;
 import com.ezen.g16.dto.Paging;
 
 @Service
 public class BoardService {
 
-	@Autowired	
+	@Autowired
 	IBoardDao bdao;
 	
 	public void selectBoard(HashMap<String, Object> paramMap) {
@@ -24,86 +22,68 @@ public class BoardService {
 		HttpServletRequest request = (HttpServletRequest) paramMap.get("request");
 		HttpSession session = request.getSession();
 		
-		int page =  1;
+		int page = 1;
 		if( request.getParameter("page")!=null) {
-			page = Integer.parseInt( request.getParameter("page"));
-			session.setAttribute("page",page);
+			page = Integer.parseInt( request.getParameter("page") );
+			session.setAttribute("page", page);
 		}else if( session.getAttribute("page")!=null) {
 			page = (Integer)session.getAttribute("page");
 		}else {
 			session.removeAttribute("page");
-		}	
-		
+		}
 		
 		Paging paging = new Paging();
 		paging.setPage(page);
 		
-		// getAllCOunt 메서드를 이용한 총 게시물 개수를 리턴
-		// 필요한건 게시물 개수를 계산해서 나에게 담아 보내줄 OUT 변수가 필요함.
-		paramMap.put("cnt", 0);
-		bdao.getAllCount(paramMap);
-		// getALlCount가 실행되고 나면 "cnt" 키 값에 해당하는 벨류가 총 게시물 개수가 됨.
-		int count =(Integer)paramMap.get("cnt");
+		// getAllCount 메서드를 이용한 총 게시물 갯수를 리턴
+		// 필요한건 게시물 갯수를 계산해서  나에게 담아 보내줄 OUT 변수가 필요합니다
+		paramMap.put("cnt", 0); 
+		bdao.getAllCount( paramMap );  
+		// getAllCount 가 실행되고 나면 "cnt" 키값에 해당하는 밸류가 총 게시물 갯수가 됩니다
+		int count = (Integer)paramMap.get("cnt");
 		
 		paging.setTotalCount(count);
 		paging.paging();
 		
-		paramMap.put("startNum",paging.getStartNum());
-		paramMap.put("endNum",paging.getEndNum());
+		paramMap.put("startNum", paging.getStartNum() );
+		paramMap.put("endNum", paging.getEndNum() );
 		
-		bdao.selectBoard(paramMap); // 결과가 ref_cursor에 담김
+		bdao.selectBoard( paramMap );  //결과가 ref_cursor에 담깁니다
 		
-		paramMap.put("paging", paging);
+		paramMap.put("paging" , paging);
 	}
 
 	public void getBoard(HashMap<String, Object> paramMap) {
-		bdao.plusOneReadCount(paramMap);
-		bdao.getBoard(paramMap);
-		
-		
+		bdao.plusOneReadCount( paramMap );
+		bdao.getBoard( paramMap );		
 	}
 
 	public void insertReply(HashMap<String, Object> paramMap) {
-		bdao.insertReply(paramMap);
-		
-		
+		bdao.insertReply( paramMap );		
 	}
 
-	public void boardViewWithoutCount(HashMap<String, Object> paramMap) {
-		bdao.getBoard(paramMap);
-		
+	public void getBoardWithoutCount(HashMap<String, Object> paramMap) {
+		bdao.getBoard( paramMap );		
 	}
 
 	public void deleteReply(HashMap<String, Object> paramMap) {
-		bdao.deleteReply(paramMap);
-		
+		bdao.deleteReply( paramMap );		
 	}
 
 	public void insertBoard(HashMap<String, Object> paramMap) {
-		bdao.insertBoard(paramMap);
-		
-	}
-
-
-	
-
-	public void getBoardWithoutCount(HashMap<String, Object> paramMap) {
-		bdao.getBoard(paramMap);
-		
+		bdao.insertBoard( paramMap );
 	}
 
 	public void updateBoard(HashMap<String, Object> paramMap) {
-		bdao.updateBoard(paramMap);
-		
+		bdao.updateBoard( paramMap );		
 	}
 
 	public void removeBoard(HashMap<String, Object> paramMap) {
-		bdao.removeBoard(paramMap);
+		bdao.removeBoard( paramMap );
 		
 	}
 
 
-	
 }
 
 

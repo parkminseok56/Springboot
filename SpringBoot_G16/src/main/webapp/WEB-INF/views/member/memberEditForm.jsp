@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,37 +13,34 @@
 <div id="wrap" align="center">
 	<h1>사용자 수정</h1>
 	<form name="frm" method="post" action="memberEdit">
-	<table><tr><th>아이디</th><td>${dto.userid} - ${dto.provider}
+	<table><tr><th>아이디</th><td>${dto.userid}
 			<input type="hidden" name="userid" value="${dto.userid}">
 			<input type="hidden" name="provider" value="${dto.provider}"></td></tr>
 			
-		<tr>
-		  <th>암호</th>
-		   <td>
-		      <c:choose>
-		        <c:when test="${empty dto.provider}">
-		            <input type="password" name="pwd" size="20"> *			        
-		        </c:when>
-		       <c:otherwise>
-		           <input type="password" name="pwd" size="20" disabled> *	
-		        </c:otherwise>
-		      </c:choose>
-		   </td>
+		<tr><th>암호</th>
+			<td>
+				<c:choose>
+						<c:when test="${empty dto.provider}">
+							<input type="password" name="pwd" size="20"> *
+						</c:when>
+						<c:otherwise>
+							<input type="password" name="pwd" size="20" disabled> *
+						</c:otherwise>
+				</c:choose>	
+			</td>
 		</tr>
-		
-		
 		<tr><th>확인</th>
-		   <td>
-		      <c:choose>
-		         <c:when test="${empty dto.provider}">
-		              <input type="password" name="pwd" size="20"> *			        
-		         </c:when>
-		         <c:otherwise>
-		              <input type="password" name="pwd" size="20" disabled> *	
-		         </c:otherwise>
-		      </c:choose>
-		   </td>
-         </tr>
+			<td>
+				<c:choose>
+						<c:when test="${empty dto.provider}">
+							<input type="password" name="pwd_check" size="20"> *
+						</c:when>
+						<c:otherwise>
+							<input type="password" name="pwd_check" size="20" disabled> *
+						</c:otherwise>
+				</c:choose>	
+			</td>
+		</tr>
 		
 		
 		<tr><th>이름</th><td><input type="text" size="20" name="name" 
