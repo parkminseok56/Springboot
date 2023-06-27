@@ -23,7 +23,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.g17.dto.KakaoProfile;
 import com.ezen.g17.dto.KakaoProfile.KakaoAccount;
@@ -80,7 +82,6 @@ public class MemberController {
 		}
 		return url;
 	}
-	
 
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpServletRequest request) {
@@ -100,8 +101,7 @@ public class MemberController {
 	@RequestMapping("/kakaoLogin")
 	public String login(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
 
-		
-		String code = request.getParameter("code");		
+		String code = request.getParameter("code");
 		String endpoint = "https://kauth.kakao.com/oauth/token";
 		URL url = new URL(endpoint); // import java.net.URL;
 		String bodyData = "grant_type=authorization_code&";
@@ -122,7 +122,7 @@ public class MemberController {
 			sb.append(input);
 			System.out.println(input); // 수신된 토큰을 콘솔에 출력합니다
 		}
-		
+
 		Gson gson = new Gson();
 		OAuthToken oAuthToken = gson.fromJson(sb.toString(), OAuthToken.class);
 
@@ -140,53 +140,178 @@ public class MemberController {
 			sb2.append(input2);
 			System.out.println(input2);
 		}
-		
+
 		Gson gson2 = new Gson();
 		KakaoProfile kakaoProfile = gson2.fromJson(sb2.toString(), KakaoProfile.class);
 
-	
-		KakaoAccount ac = kakaoProfile.getAccount();		
-		com.ezen.g17.dto.KakaoProfile.KakaoAccount.Profile pf = ac.getProfile();		
+		KakaoAccount ac = kakaoProfile.getAccount();
+		com.ezen.g17.dto.KakaoProfile.KakaoAccount.Profile pf = ac.getProfile();
 
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("userid", kakaoProfile.getId() );
-		paramMap.put("ref_cursor", null );
-		ms.getMember( paramMap );
-		
-		ArrayList< HashMap<String, Object> > list 
-				= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
-		
-		if ( list == null || list.size() == 0 ) {
-			paramMap.put("id", kakaoProfile.getId() );
-			paramMap.put("email" , ac.getEmail());
-			paramMap.put("name" , pf.getNickname());
-			paramMap.put("provider" , "kakao");
-			ms.joinKakao( paramMap );
-			
-			paramMap.put("ref_cursor", null );
-			ms.getMember( paramMap );
-			list = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
+		paramMap.put("id", kakaoProfile.getId());
+		paramMap.put("ref_cursor", null);
+		ms.getMember(paramMap);
+
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+
+		if (list == null || list.size() == 0) {
+			paramMap.put("id", kakaoProfile.getId());
+			paramMap.put("email", ac.getEmail());
+			paramMap.put("name", pf.getNickname());
+			paramMap.put("provider", "kakao");
+			ms.joinKakao(paramMap);
+
+			paramMap.put("ref_cursor", null);
+			ms.getMember(paramMap);
+			list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 		}
-		
-		HashMap<String , Object> mvo = list.get(0);
+
+		HashMap<String, Object> mvo = list.get(0);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", mvo);
 
-		return "redirect:/main";
+		return "redirect:/";
 	}
 
+	@RequestMapping(value = "/contract")
+	public String contract() {
+		return "member/contract";
+	}
+
+	@RequestMapping(value = "/joinForm", method = RequestMethod.POST)
+	public String join_form() {
+		return "member/joinForm";
+
+	}
+
+	@RequestMapping("/idCheckForm")
+	public ModelAndView id_check_form(@RequestParam("id") String id) {
+
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", id);
+		paramMap.put("ref_cursor", null);
+		ms.getMember(paramMap);
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+
+		if (list == null || list.size() == 0)
+			mav.addObject("result", -1);
+		else
+			mav.addObject("result", 1);
+		mav.addObject("id", id);
+		mav.setViewName("member/idcheck");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public String join(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result, Model model,
+			HttpServletRequest request, @RequestParam(value = "reid", required = false) String reid,
+			@RequestParam(value = "pwdCheck", required = false) String pwdCheck) {
+
+		String url = "member/joinForm";
+
+		if (result.getFieldError("id") != null)
+			model.addAttribute("message", result.getFieldError("id").getDefaultMessage());
+		else if (result.getFieldError("pwd") != null)
+			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage());
+		else if (result.getFieldError("name") != null)
+			model.addAttribute("message", result.getFieldError("name").getDefaultMessage());
+		else if (result.getFieldError("email") != null)
+			model.addAttribute("message", result.getFieldError("email").getDefaultMessage());
+		else if (!reid.equals(membervo.getId()))
+			model.addAttribute("message", "id 중복체크를 하지 않았습니다");
+		else if (!pwdCheck.equals(membervo.getPwd()))
+			model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", membervo.getId());
+			paramMap.put("pwd", membervo.getPwd());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("email", membervo.getEmail());
+			paramMap.put("phone", membervo.getPhone());
+			paramMap.put("zip_num", membervo.getZip_num());
+			paramMap.put("address1", membervo.getAddress1());
+			paramMap.put("address2", membervo.getAddress2());
+			paramMap.put("address3", membervo.getAddress3());
+
+			ms.insertMember(membervo);
+			model.addAttribute("message", "회원가입이 완료되었습니다. 로그인 하세요");
+
+			url = "member/login";
+		}
+		return url;
+	}
 	
+	@RequestMapping("/memberEditForm")
+	public ModelAndView memberEditForm( HttpServletRequest request) {
+		
+		MemberVO dto = new MemberVO();	
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser"); 
+		
+		
+		dto.setId( (String)loginUser.get("ID") );
+		dto.setName( (String)loginUser.get("NAME") );
+		dto.setEmail( (String)loginUser.get("EMAIL") );
+		dto.setPhone( (String)loginUser.get("PHONE") );	
+		dto.setZip_num( (String)loginUser.get("ZIP_NUM") );	
+		dto.setAddress1( (String)loginUser.get("ADDRESS1") );	
+		dto.setAddress2( (String)loginUser.get("ADDRESS2") );	
+		dto.setAddress3( (String)loginUser.get("ADDRESS3") );	
+		dto.setProvider( (String)loginUser.get("PROVIDER") );	
+		
+		mav.addObject("dto", dto);
+		mav.setViewName("member/memberUpdateForm");
+		return mav;
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value="/memberUpdate" , method=RequestMethod.POST)
+	public String memberUpdate( 
+			@ModelAttribute("dto") @Valid MemberVO membervo , BindingResult result, 
+			@RequestParam(value="pwdCheck", required=false) String pwdCheck,  
+			Model model, HttpServletRequest request ) {
+		
+		String url = "member/memberUpdateForm";
+		
+		if( result.getFieldError("pwd") != null )
+			model.addAttribute("message" , result.getFieldError("pwd").getDefaultMessage());
+		else if( result.getFieldError("name") != null )
+			model.addAttribute("message" , result.getFieldError("name").getDefaultMessage());		
+		else if( result.getFieldError("email") != null )
+			model.addAttribute("message" , result.getFieldError("email").getDefaultMessage());
+		else if( result.getFieldError("phone") != null )
+			model.addAttribute("message" , result.getFieldError("phone").getDefaultMessage());
+		else if( pwdCheck()==null && (pwdCheck!=null && !pwdCheck.equals(membervo.getPwd() ) ) ) 
+			model.addAttribute("message","비밀번호 확인이 일치하시 않습니다.");		
+		else { 
+			HashMap<String , Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", membervo.getId() );	
+			paramMap.put("PWD", membervo.getPwd() );	
+			paramMap.put("NAME", membervo.getName() );
+			paramMap.put("EMAIL", membervo.getEmail() );
+			paramMap.put("PHONE", membervo.getPhone() );
+			paramMap.put("ZIP_NUM", membervo.getZip_num() );
+			paramMap.put("ADDRESS1", membervo.getAddress1() );
+			paramMap.put("ADDRESS2", membervo.getAddress2() );
+			paramMap.put("ADDRESS3", membervo.getAddress3() );			
+			ms.updateMember( paramMap );							
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", paramMap);
+			
+			url = "redirect:/";
+		}
+		return url;
+	}
+
+	private Object pwdCheck() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

@@ -17,8 +17,9 @@
 		#{ref_cursor3, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bannerMap}
 		)
 	}
-	
 	</select>
+	
+	
 	
 	
 	

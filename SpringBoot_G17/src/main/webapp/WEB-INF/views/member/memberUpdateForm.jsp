@@ -14,8 +14,8 @@
 		        <label>Retype Password</label><input type="password"  name="pwdCheck"><br>
 	        </c:when> 
 	        <c:otherwise>
-	        	<label>Password</label><input type="password"  name="pwd" readonly><br> 
-		        <label>Retype Password</label><input type="password"  name="pwdCheck" readonly><br>
+	        	<label>Password</label><input type="password"  name="pwd" disabled><br> 
+		        <label>Retype Password</label><input type="password"  name="pwdCheck" disabled><br>
 	        </c:otherwise>
         </c:choose>
         <label>Name</label><input type="text" name="name"  value="${dto.name}"><br> 
@@ -96,7 +96,7 @@
 	    ${message}
 	</fieldset><div class="clear"></div>
 	<div id="buttons">
-		<input type="submit" value="정보수정" class="submit" > 
+		<input type="button" value="정보수정" class="submit" onClick="go_member_update();" > 
 		<input type="reset" value="취소" class="cancel"></div>
 </form>
 </article>

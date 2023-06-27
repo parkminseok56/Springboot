@@ -28,6 +28,12 @@ insert into member(id,pwd,name,zip_num,address1,address2,address3,phone,email) v
 
 
 select* from banner;
+select* from product;
+
+insert into banner (bseq, subject, order_seq, useyn, image)
+values (banner_seq.nextval, '테스트', 5, 'Y', 'main_img.jpg');
+
+update product  set  IMAGE = 'ddabong.jpg' where
 
 insert into banner (bseq, subject, order_seq, useyn, image)
 values (banner_seq.nextval, '테스트', 5, 'Y', 'main_img.jpg');
