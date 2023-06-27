@@ -1,4 +1,4 @@
-package com.ezen.G17.dto;
+package com.ezen.g17.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.ezen.G17.dto;
+package com.ezen.g17.dto;
 
 public class KakaoProfile {
 
@@ -51,6 +51,4 @@ public class KakaoProfile {
 			
 		}
 	}
-	
-	
 }

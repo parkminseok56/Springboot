@@ -13,12 +13,12 @@
       		<td>${orderVO.oseq} </td>   	<td>${orderVO.pname} </td>
         	<td><fmt:formatNumber value="${orderVO.price2}" type="currency"/> </td>
         	<td><a href="orderDetail?oseq=${orderVO.oseq}">조회</a></td><td>
-        	
-        <c:choose>	
-			<c:when test="${orderVO.result=='4'}">구매 확정</c:when>
-			<c:otherwise>진행중</c:otherwise>
-		</c:choose>	
-			
+        	<c:choose>
+				<c:when test="${orderVO.result=='4'}">구매확정</c:when>
+				<c:otherwise >진행중</c:otherwise>
+			</c:choose>	
+				</td></tr>
+				
       	</c:forEach>    
 </table>
 <div class="clear"></div>

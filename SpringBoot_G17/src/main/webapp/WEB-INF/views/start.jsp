@@ -7,19 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <script type="text/javascript">
-if( (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPhod/i)) 
+if( (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) 
 		|| (navigator.userAgent.match(/iPad/i)) || (navigator.userAgent.match(/Windows CE/i))
 		|| (navigator.userAgent.match(/Symbian/i)) || (navigator.userAgent.match(/BlackBerry/i))
-		|| (navigator.userAgent.match(/Android/i)) ) {
-	 window.location.href='mobilemain';
+		|| (navigator.userAgent.match(/Android/i)) ){
+	window.location.href='mobilemain';
 }else{
 	window.location.href='webmain';
 }
 
 </script>
-
 
 </body>
 </html>

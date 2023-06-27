@@ -28,7 +28,8 @@
 						<c:when test='${orderVO.result=="2"}'>배송중</c:when>
 						<c:when test='${orderVO.result=="3"}'>
 							<span style="color:blue;font-weight:bold;">배송완료</span>
-							<input type="button" value="구매확정" onClick="orderEnd('${orderVO.oseq}', '${orderVO.odseq}');">
+							<input type="button" value="구매확정" 
+							onClick="orderEnd('${orderVO.oseq}', '${orderVO.odseq}');">
 						</c:when>
 						<c:otherwise><span style="color:red;font-weight:bold;"> 구매확정 </span></c:otherwise>
 			    	</c:choose>

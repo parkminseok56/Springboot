@@ -6,7 +6,7 @@
 <form name="frm" >
 	<table id="list">
 		<tr><th>제목 </th><td width="642" >
-		<input type="text" name="subject" size="47" ></td></tr>
+			<input type="text" name="subject" size="47" ></td></tr>
 		<tr><th>순위 </th>
 			<td width="642">
 				<select name="order_seq">

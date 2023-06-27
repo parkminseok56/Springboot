@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
@@ -162,28 +164,39 @@ public class MemberController {
 
 		// 전달받은 회원정보를 kakaoProfile 객체에 담습니다.( sb2 -> kakaoProfile )
 		Gson gson2 = new Gson();
-		KakaoProfile kakaoProfile = gson2.fromJson(sb2.toString(), KakaoProfile.class);
-
-		System.out.println(kakaoProfile.getId());
-		KakaoAccount ac = kakaoProfile.getAccount();
-		System.out.println(ac.getEmail());
+		KakaoProfile kakaoProfile = gson2.fromJson(sb2.toString(), KakaoProfile.class);	
+		KakaoAccount ac = kakaoProfile.getAccount();		
 		com.ezen.g15.dto.KakaoProfile.KakaoAccount.Profile pf = ac.getProfile();
-		System.out.println(pf.getNickname());
+	
 
-		MemberVO mvo = ms.getMember(kakaoProfile.getId());
-		if (mvo == null) {
-			mvo = new MemberVO();
-			mvo.setId(kakaoProfile.getId());
-			mvo.setEmail(ac.getEmail());
-			mvo.setName(pf.getNickname());
-			mvo.setProvider("kakao");
-			ms.joinKakao(mvo);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userid", kakaoProfile.getId() );
+		paramMap.put("ref_cursor", null );
+		ms.getMember( paramMap );
+		
+		/
+		ArrayList< HashMap<String, Object> > list 
+				= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
+		
+		if ( list == null || list.size() == 0 ) {
+			paramMap.put("userid", kakaoProfile.getId() );
+			paramMap.put("email" , ac.getEmail());
+			paramMap.put("name" , pf.getNickname());
+			paramMap.put("provider" , "kakao");
+			ms.joinKakao( paramMap );
+			
+			paramMap.put("ref_cursor", null );
+			ms.getMember( paramMap );
+			list = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
 		}
+		
+		HashMap<String , Object> mvo = list.get(0);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", mvo);
 
-		return "redirect:/";
+		return "redirect:/main";
+		
 	}
 
 	@RequestMapping("/contract")

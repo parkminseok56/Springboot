@@ -1,11 +1,21 @@
-package com.ezen.G17.service;
+package com.ezen.g17.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.ezen.G17.dao.ICartDao;
+import com.ezen.g17.dao.ICartDao;
 
+@Service
 public class CartService {
 
 	@Autowired
 	ICartDao cdao;
+
+	
 }
+
+
+
+
+
+

@@ -27,7 +27,7 @@
 						<td><fmt:formatNumber value="${productVO.price2}"/></td>
 			      		<td><fmt:formatDate value="${productVO.indate}"/></td>
 			      		<td><c:choose>
-			      			<c:when test='${productVO.useyn=="n"}'>미사용</c:when>
+			      			<c:when test='${productVO.useyn=="N"}'>미사용</c:when>
 			   	 			<c:otherwise>사용</c:otherwise> 
 						</c:choose></td>
 					</tr>
