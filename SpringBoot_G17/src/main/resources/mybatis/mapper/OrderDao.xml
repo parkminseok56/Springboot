@@ -3,9 +3,21 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	
-<mapper namespace="com.ezen.g17.dao.IOrderDao">
 
+<mapper namespace="com.ezen.g17.dao.IOrderDao">
+	<resultMap type="java.util.HashMap" id="orderMap" />
+
+	<insert id="insertOrder" parameterType="java.util.HashMap"
+		statementType="CALLABLE">{CALL insertOrder(#{id},#{oseq, mode=OUT,
+		jdbcType=INTEGER})} </insert>
+
+	<select id="listOrderByOseq" parameterType="java.util.HashMap"
+		statementType="CALLABLE">{CALL listOrderByOseq(#{oseq},#{ref_cursor , mode=OUT,
+		jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap})} </select>
+
+	<insert id="insertOrderOne" parameterType="java.util.HashMap"
+		statementType="CALLABLE">{CALL insertOrderOne(#{id},#{pseq},#{quantity},#{oseq,
+		mode=OUT, jdbcType=INTEGER})} </insert>
 </mapper>
 
 
