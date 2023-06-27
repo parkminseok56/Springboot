@@ -286,7 +286,7 @@ public class MemberController {
 			model.addAttribute("message" , result.getFieldError("email").getDefaultMessage());
 		else if( result.getFieldError("phone") != null )
 			model.addAttribute("message" , result.getFieldError("phone").getDefaultMessage());
-		else if( membervo.pwdCheck()==null && (pwdCheck!=null && !pwdCheck.equals(membervo.getPwd() ) ) ) 
+		else if( pwdCheck == null && (pwdCheck!=null && !pwdCheck.equals(membervo.getPwd() ) ) ) 
 			model.addAttribute("message","비밀번호 확인이 일치하시 않습니다.");		
 		else { 
 			HashMap<String , Object> paramMap = new HashMap<String, Object>();
@@ -311,8 +311,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/memberUpdatekakao" , method=RequestMethod.POST)
 	public String memberUpdateKakao( 
-			@ModelAttribute("dto") @Valid MemberVO membervo , BindingResult result, 
-			  
+			@ModelAttribute("dto") @Valid MemberVO membervo , BindingResult result,
 			Model model, HttpServletRequest request ) {
 		
 		String url = "member/memberUpdateForm";
