@@ -286,7 +286,7 @@ public class MemberController {
 			model.addAttribute("message" , result.getFieldError("email").getDefaultMessage());
 		else if( result.getFieldError("phone") != null )
 			model.addAttribute("message" , result.getFieldError("phone").getDefaultMessage());
-		else if( pwdCheck()==null && (pwdCheck!=null && !pwdCheck.equals(membervo.getPwd() ) ) ) 
+		else if( membervo.pwdCheck()==null && (pwdCheck!=null && !pwdCheck.equals(membervo.getPwd() ) ) ) 
 			model.addAttribute("message","비밀번호 확인이 일치하시 않습니다.");		
 		else { 
 			HashMap<String , Object> paramMap = new HashMap<String, Object>();
@@ -308,11 +308,39 @@ public class MemberController {
 		return url;
 	}
 
-	private Object pwdCheck() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	@RequestMapping(value="/memberUpdatekakao" , method=RequestMethod.POST)
+	public String memberUpdateKakao( 
+			@ModelAttribute("dto") @Valid MemberVO membervo , BindingResult result, 
+			  
+			Model model, HttpServletRequest request ) {
+		
+		String url = "member/memberUpdateForm";
+			
+	     if( result.getFieldError("name") != null )
+			model.addAttribute("message" , result.getFieldError("name").getDefaultMessage());		
+		else if( result.getFieldError("email") != null )
+			model.addAttribute("message" , result.getFieldError("email").getDefaultMessage());
+		else { 
+			HashMap<String , Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", membervo.getId() );	
+			paramMap.put("NAME", membervo.getName() );
+			paramMap.put("PWD", "" );
+			paramMap.put("EMAIL", membervo.getEmail() );
+			paramMap.put("PHONE", membervo.getPhone() );
+			paramMap.put("ZIP_NUM", membervo.getZip_num() );
+			paramMap.put("ADDRESS1", membervo.getAddress1() );
+			paramMap.put("ADDRESS2", membervo.getAddress2() );
+			paramMap.put("ADDRESS3", membervo.getAddress3() );	
+			paramMap.put("PROVIDER", "kakao" );	
+			ms.updateMember( paramMap );							
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", paramMap);
+			
+			url = "redirect:/";
+		}
+		return url;
+	}
 	
 	
 

@@ -42,11 +42,11 @@ function reInsert(id, useyn){
 
 
 function go_member_update(){
-	if( document.formm.provider.value='kakao' )
-	    document.formm.action='memberUpdate';
-	else
-		document.formm.action='memberUpdateKakao';
-		
+	if( document.formm.provider.value=='kakao' ){
+	    document.formm.action='memberUpdatekakao';
+	}else{
+		document.formm.action='memberUpdate';
+	}	
 		document.formm.submit();
 	}
 
