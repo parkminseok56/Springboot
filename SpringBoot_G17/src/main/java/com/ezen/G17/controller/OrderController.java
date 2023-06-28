@@ -88,6 +88,40 @@ public class OrderController {
 		}
 		return "redirect:/orderList?oseq="+oseq;
 	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="/myPage")
+	public ModelAndView mypage( HttpServletRequest request)			{
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {	
+			// 로그인한 사람의 아이디를 보내서 현재 진행 중인 주문내역을 "XXX 상품 포함 X건" 형태의 리스트로 정리해서 리턴
+			HashMap<String,Object> paramMap = new HashMap<String,Object>();
+			paramMap.put("id",loginUser.get("ID"));
+			//paramMap.put("ref_cursor",null);
+			
+			
+			  ArrayList<HashMap<String,Object>> finalList
+				 =  (ArrayList<HashMap<String,Object>>) paramMap.get("finalList");
+			  
+			  mav.addObject("orderList",finalList);
+			  mav.addObject("title","진행중인 주문내역");
+			  mav.setViewName("mypage/mypage");
+			os.myPageList(paramMap);
+		}
+		return mav;
+			
+			
+			
+		}
 }
 
 
