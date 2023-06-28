@@ -12,17 +12,17 @@
 					<td>
 							<c:choose>
 									<c:when test="${qnaVO.passcheck == 'Y'}">
-											<a href="#" onClick="passCheck('${qnaVO.qseq}')">
-												${qnaVO.subject}
+											<a href="#" onClick="passCheck('${qnaVO.QSEQ}')">
+												${qnaVO.SUBJECT}
 											</a>
 											&nbsp;<img src="/images/key.png" style="width:20px;vertical-align: middle">
 									</c:when>
 									<c:otherwise>
-											<a href="qnaView?qseq=${qnaVO.qseq}">${qnaVO.subject}</a>
+											<a href="qnaView?qseq=${qnaVO.QSEQ}">${qnaVO.SUBJECT}</a>
 									</c:otherwise>
 							</c:choose>
 					</td>      
-        			<td><fmt:formatDate value="${qnaVO.indate}" type="date" /></td>
+        			<td><fmt:formatDate value="${qnaVO.INDATE}" type="date" /></td>
         			<td>
         				<c:choose>
 					        <c:when test="${qnaVO.rep==1}"> N </c:when>
