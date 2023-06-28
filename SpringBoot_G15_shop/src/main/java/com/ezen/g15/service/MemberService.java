@@ -34,8 +34,8 @@ public class MemberService {
 		
 	}
 
-	public void getMember(String string) {
-		mdao.getMember(string);
+	public MemberVO getMember(String id) {
+		return mdao.getMember(id);
 		
 	}
 }

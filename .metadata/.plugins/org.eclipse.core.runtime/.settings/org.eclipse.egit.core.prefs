@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=D\:\\JAVA01\\springboot\\.git;
-GitRepositoriesView.GitDirectories.relative=.git;
+GitRepositoriesView.GitDirectories=D\:\\JAVA01\\springboot\\.git;D\:\\JAVA01\\Phone-Fly\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;D\:\\JAVA01\\Phone-Fly\\.git;
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

@@ -20,12 +20,10 @@
     <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.KakaoProfile.KakaoAccount"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.CartVO"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.QnaVO"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.Paging"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="com.ezen.g17.dto.MemberVO"/>
     <fullyQualifiedTypeName name="com.ezen.g15.dto.KakaoProfile.KakaoAccount.Profile"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

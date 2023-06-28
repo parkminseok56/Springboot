@@ -62,7 +62,7 @@ public class ProductController {
 		
 		mav.setViewName("mobileIndex");
 		return mav;
-	}
+	} 
 	
 	
 	  @RequestMapping(value="/catagory") 

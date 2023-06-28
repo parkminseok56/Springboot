@@ -19,7 +19,7 @@ public interface IMemberDao {
 
 	void withDrawalMember(String id);
 
-	void getMember(String string);
+	MemberVO getMember(String id);
 
 
 

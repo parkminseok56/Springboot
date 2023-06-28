@@ -47,9 +47,9 @@ public class AdminController {
 		}if( resultMap.get("PWD") == null) {
 			model.addAttribute("msg" , "관리자에게 문의하세여");
 		}else if( workPwd.equals( (String) resultMap.get"")) {
-			mav.addObject("msg" , "패쓰워드를 입력하세요");
-			mav.setViewName("admin/adminLoginForm");
-			return mav;
+			mav.addAttribute("msg" , "패쓰워드를 입력하세요");
+		
+			return "admin/adminLoginForm";
 		}
 		
 		int result = as.workerCheck( workId, workPwd );
