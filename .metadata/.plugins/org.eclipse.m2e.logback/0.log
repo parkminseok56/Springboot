@@ -62,3 +62,5 @@
 2023-06-28 15:59:59,062 [Worker-8: http://www.eclipse.org/downloads/download.php?file=/buildship/updates/e410/releases/3.x/3.1.7.v20230428-1602&format=xml&countryCode=kr&timeZone=9&format=xml] INFO  o.a.h.c.h.i.c.HttpRequestRetryExec - Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://www.eclipse.org:80
 2023-06-28 16:00:17,664 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2023-06-28 16:24:47,211 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-06-29 09:46:10,275 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-06-29 12:07:38,249 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

@@ -4,7 +4,35 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.ezen.g17.dao.IAdminDao">
+<resultMap type="java.util.HashMap" id="adminMap"/>
 
+<select id="getAdmin" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL getAdmin(#{workId},#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})} </select>
+
+<select id="adminGetAllCount" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL adminGetAllCount(#{tableName},#{key},#{cnt , mode=OUT, jdbcType=INTEGER })} </select>
+
+<select id="getProductList" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL getProductList(#{startNum},#{endNum},#{key},#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})} </select>
+
+<insert id="insertProduct" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL insertProduct(#{name}, #{kind}, #{price1}, #{price2}, #{price3}, #{content} , #{image})} </insert>
+
+<insert id="updateProduct" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL updateProduct(#{pseq}, #{name}, #{kind}, #{price1}, #{price2}, #{price3}, #{content} , #{image})} </insert>
+
+<select id="getMemberList" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL getMemberList(#{startNum},#{endNum},#{key},#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})} </select>
+
+<select id="memberReinsert" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL memberReinsert( #{id}, #{useyn} )} </select>
+
+<select id="getOrderList" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL getOrderList(#{startNum},#{endNum},#{key},#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})} </select>
+
+<insert id="updateOrderResult" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL updateOrderResult( #{odseq} )} </insert>
+
+<select id="getQnaList" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL getQnaList(#{startNum},#{endNum},#{key},#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})} </select>
+
+<insert id="updateOna" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL updateOna( #{qseq}, #{reply} )} </insert>
+
+<select id="getBannerList" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL getBannerList(#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap})} </select>
+
+<insert id="insertBanner" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL insertBanner(#{subject}, #{order_seq}, #{useyn}, #{image})} </insert>
+
+<insert id="updateSeq" parameterType="java.util.HashMap" statementType="CALLABLE">{CALL updateSeq( #{bseq}, #{useyn}, #{changeval} )} </insert>
 	
 </mapper>
 
