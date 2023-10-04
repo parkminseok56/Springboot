@@ -79,3 +79,49 @@
 - @EnableAutoConfiguration: 스프링 부트의 핵심 기능 중 하나로, 자동 구성을 활성화하는 어노테이션입니다.
   
 -  이 어노테이션을 사용하면 스프링 부트가 애플리케이션을 실행할 때 클래스 경로와 설정 정보를 기반으로 자동으로 필요한 빈을 생성하고 구성합니다.
+
+-----------------------------------------------------
+## JPA(Java Persistence API) 
+- 자바 애플리케이션에서 데이터베이스와 상호 작용하는데 사용되는 API입니다.
+- JPA는 객체-관계 매핑(Object-Relational Mapping, ORM) 기술의 한 형태로, 데이터베이스 테이블과 자바 객체 간의 매핑을 쉽게 처리하여 개발자가 데이터베이스에 접근할 때 SQL 쿼리를 직접 작성하지 않고도 데이터를 조작할 수 있도록 합니다.
+
+Spring에서 JPA를 사용하려면 다음과 같은 주요 컴포넌트와 개념을 이해해야 합니다:
+
+##  Entity 클래스
+- JPA를 사용하려면 데이터베이스 테이블과 매핑되는 자바 객체를 정의해야 합니다.
+- 이러한 객체를 엔티티(Entity) 클래스라고 하며, @Entity 어노테이션을 사용하여 선언합니다.
+  
+```
+@Entity
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private double price;
+    // getter, setter, 기타 메서드
+}
+```
+
+Repository 인터페이스: 데이터베이스와 상호 작용하기 위한 메서드를 정의한 인터페이스를 생성합니다. 이 인터페이스는 Spring Data JPA에서 제공하는 JpaRepository를 확장할 수 있으며, 자동으로 CRUD(Create, Read, Update, Delete) 작업을 처리합니다.
+
+```
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    List<Product> findByName(String name);
+}
+```
+
+- EntityManager: JPA를 사용하여 엔티티와 상호 작용할 때 사용되는 핵심 인터페이스입니다.EntityManager는 엔티티 매니저 팩토리(EntityManagerFactory)를 통해 생성되며, 데이터베이스 트랜잭션을 관리하고 엔티티의 CRUD 작업을 수행합니다.
+
+- Spring Data JPA: Spring Data JPA는 Spring 프레임워크와 JPA를 통합하여 개발자가 더 쉽게 데이터베이스 작업을 처리할 수 있도록 돕는 프로젝트입니다. JpaRepository 인터페이스와 같은 기능을 제공하여 개발자가 반복적인 데이터 액세스 코드를 줄일 수 있습니다.
+
+- JPQL (Java Persistence Query Language): JPA는 데이터베이스와 직접적으로 SQL 쿼리를 사용하지 않고, JPQL이라고 하는 객체 지향 쿼리 언어를 제공합니다. JPQL을 사용하여 엔티티를 검색하고 필터링할 수 있습니다.
+
+- Spring에서 JPA를 사용하는 기본 단계
+  -  엔티티 클래스 정의
+  -  Repository 인터페이스 생성
+  -  Spring 설정에서 JPA 설정 및 데이터베이스 연결 구성
+  -  서비스 레이어에서 Repository를 사용하여 데이터 액세스 로직 구현
+  -  컨트롤러 레이어에서 서비스를 호출하여 웹 애플리케이션과 통합
+  -  Spring Boot를 사용하면 이러한 설정을 자동화하고 간소화할 수 있으며, 다양한 데이터베이스와의 통합도 쉽게 처리할 수 있습니다.
+  -  JPA를 효과적으로 사용하기 위해서는 JPA의 다양한 기능과 설정 옵션에 대한 깊은 이해가 필요합니다.
