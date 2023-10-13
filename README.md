@@ -101,8 +101,16 @@
   - 객체 지향 프로그래밍의 이점 활용: ORM은 객체 지향 프로그래밍 언어의 이점을 살려서 코드를 작성하고 유지하기 쉽게 만듭니다.
 
 - 주요 ORM 프레임워크
--  Hibernate, Entity Framework (.NET), Django ORM (Python), Sequelize (Node.js), SQLAlchemy (Python), JPA (Java Persistence API) 
+  -  Hibernate, Entity Framework (.NET), Django ORM (Python), Sequelize (Node.js), SQLAlchemy (Python), JPA (Java Persistence API)
 
+- ORM vs SQL Mapping
+ 
+  - ORM은 데이터베이스와 객체 간의 불일치를 해결하고 객체 지향 프로그래밍 모델을 촉진하는 데 중점을 둡니다. SQL 쿼리 생성 및 매핑을 자동화하며, 복잡한 객체 간의 관계를 처리하는 데 적합합니다.
+  
+  - SQL Mapping은 SQL에 대한 직접적인 제어를 허용하며, 개발자가 SQL 쿼리를 명시적으로 정의하고 관리하는 데 유용합니다. 복잡한 SQL 작업을 수행할 때 더 많은 유연성을 제공합니다.
+  
+  - 선택은 프로젝트의 요구 사항과 개발자 선호에 따라 달라집니다. ORM은 객체 지향적인 개발을 강조하며, SQL Mapping은 SQL 쿼리에 직접적인 제어를 원하는 경우에 더 적합합니다.
+    
 -----------------------------------------------------
 ## JPA(Java Persistence API) 
 - 자바 애플리케이션에서 데이터베이스와 상호 작용하는데 사용되는 API입니다.
