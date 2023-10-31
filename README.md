@@ -157,7 +157,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
   -  Spring Boot를 사용하면 이러한 설정을 자동화하고 간소화할 수 있으며, 다양한 데이터베이스와의 통합도 쉽게 처리할 수 있습니다.
   -  JPA를 효과적으로 사용하기 위해서는 JPA의 다양한 기능과 설정 옵션에 대한 깊은 이해가 필요합니다.
 
-
 -----------------------------------------------------
 ## ENTITY 와 DTO의 차이점 
  
